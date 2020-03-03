@@ -9,9 +9,14 @@ import { AuthService } from "../auth.service";
 export class AuthComponent implements OnInit {
   constructor(private authService: AuthService) {}
 
+  ngOnInit() {
+    const url = "/home";
+    window.opener.open(url, "_self");
+    window.opener.focus();
+    window.close();
+  }
+
   onLogin() {
     this.authService.login();
   }
-
-  ngOnInit() {}
 }

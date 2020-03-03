@@ -14,8 +14,8 @@ export class AuthService {
     const specs = "width=500,height=500";
     window.open(url, name, specs);
 
-    // this.http.get("http://localhost:5000/api/auth").subscribe(data => {
-    //   console.log(data);
-    // });
+    this.http.get("http://localhost:5000/api/auth").subscribe(data => {
+      console.log(data);
+    });
   }
 }
