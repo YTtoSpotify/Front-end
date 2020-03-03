@@ -13,9 +13,5 @@ export class AuthService {
     const name = "spotify_login";
     const specs = "width=500,height=500";
     window.open(url, name, specs);
-
-    this.http.get("http://localhost:5000/api/auth").subscribe(data => {
-      console.log(data);
-    });
   }
 }
