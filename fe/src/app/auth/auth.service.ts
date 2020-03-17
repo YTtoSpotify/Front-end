@@ -14,4 +14,8 @@ export class AuthService {
     const specs = "width=500,height=500";
     window.open(url, name, specs);
   }
+
+  checkAuth() {
+    this.http.get("http://localhost:5000/api/auth/checkAuth");
+  }
 }
