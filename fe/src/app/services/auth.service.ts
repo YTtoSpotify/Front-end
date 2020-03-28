@@ -1,11 +1,13 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
+import { BehaviorSubject } from "rxjs";
 
 @Injectable({
   providedIn: "root"
 })
 export class AuthService {
-  public isAuthenticated: boolean;
+  public isAuthenticated = new BehaviorSubject(false);
+
   constructor(private http: HttpClient) {}
 
   login() {
@@ -22,7 +24,7 @@ export class AuthService {
     return this.http
       .get("http://localhost:5000/api/auth/checkAuth")
       .subscribe((data: { isAuthenticated: boolean }) => {
-        this.isAuthenticated = data.isAuthenticated;
+        this.isAuthenticated.next(data.isAuthenticated);
       });
   }
 }
