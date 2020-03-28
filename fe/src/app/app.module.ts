@@ -5,10 +5,10 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { AuthComponent } from "./auth/auth/auth.component";
 import { HttpClientModule } from "@angular/common/http";
-import { LoginComponent } from "./auth/login/login.component";
+import { LoginButtonComponent } from './reusable/auth/login-button/login-button.component';
 
 @NgModule({
-  declarations: [AppComponent, AuthComponent, LoginComponent],
+  declarations: [AppComponent, AuthComponent, LoginButtonComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent]

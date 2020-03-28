@@ -9,9 +9,12 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   login() {
+    // route to server login endpoint
     const url = "http://localhost:5000/api/auth";
     const name = "spotify_login";
     const specs = "width=500,height=500";
+
+    // open popup window for login
     window.open(url, name, specs);
   }
 
