@@ -5,10 +5,10 @@ import { HttpClient } from "@angular/common/http";
   providedIn: "root"
 })
 export class AuthService {
+  public isLoggedIn: boolean;
   constructor(private http: HttpClient) {}
 
   login() {
-    console.log("login triggered");
     const url = "http://localhost:5000/api/auth";
     const name = "spotify_login";
     const specs = "width=500,height=500";
@@ -16,6 +16,11 @@ export class AuthService {
   }
 
   checkAuth() {
-    this.http.get("http://localhost:5000/api/auth/checkAuth");
+    return this.http
+      .get("http://localhost:5000/api/auth/checkAuth")
+      .subscribe((data: { isLoggedIn: boolean }) => {
+        this.isLoggedIn = data.isLoggedIn;
+        console.log(this.isLoggedIn);
+      });
   }
 }
