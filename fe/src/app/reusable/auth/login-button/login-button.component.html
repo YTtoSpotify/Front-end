@@ -1,1 +1,11 @@
-<p>login-button works!</p>
+<div class="row h-100 w-25 m-auto ">
+  <div class="col d-flex justify-content-center align-items-center h-25 m-auto">
+    <button
+      class="btn-lg btn-primary "
+      *ngIf="authService.isAuthenticated"
+      (click)="onLogin()"
+    >
+      Login with Spotify
+    </button>
+  </div>
+</div>
