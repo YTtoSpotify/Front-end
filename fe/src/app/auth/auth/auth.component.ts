@@ -1,3 +1,4 @@
+import { AuthService } from "./../../services/auth.service";
 import { Component, OnInit } from "@angular/core";
 
 @Component({
@@ -5,12 +6,13 @@ import { Component, OnInit } from "@angular/core";
   templateUrl: "./auth.component.html"
 })
 export class AuthComponent implements OnInit {
-  constructor() {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {
     const url = "/profile";
     window.opener.open(url, "_self");
     window.opener.focus();
     window.close();
+    this.authService.checkAuth();
   }
 }
