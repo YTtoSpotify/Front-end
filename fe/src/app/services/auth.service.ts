@@ -5,7 +5,7 @@ import { HttpClient } from "@angular/common/http";
   providedIn: "root"
 })
 export class AuthService {
-  public isLoggedIn: boolean;
+  public isAuthenticated: boolean;
   constructor(private http: HttpClient) {}
 
   login() {
@@ -21,9 +21,8 @@ export class AuthService {
   checkAuth() {
     return this.http
       .get("http://localhost:5000/api/auth/checkAuth")
-      .subscribe((data: { isLoggedIn: boolean }) => {
-        this.isLoggedIn = data.isLoggedIn;
-        console.log(this.isLoggedIn);
+      .subscribe((data: { isAuthenticated: boolean }) => {
+        this.isAuthenticated = data.isAuthenticated;
       });
   }
 }
