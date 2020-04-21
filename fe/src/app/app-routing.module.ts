@@ -1,3 +1,5 @@
+import { LoginButtonComponent } from "./reusable/auth/login-button/login-button.component";
+import { HomeComponent } from "./home/home.component";
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { AuthComponent } from "./auth/auth/auth.component";
@@ -5,8 +7,17 @@ import { AuthGuardService } from "./services/auth-guard-service.service";
 
 const routes: Routes = [
   {
-    path: "login",
+    path: "authenticate",
     component: AuthComponent
+  },
+  {
+    path: "home",
+    component: HomeComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: "login",
+    component: LoginButtonComponent
   }
 ];
 
