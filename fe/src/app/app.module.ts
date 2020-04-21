@@ -8,6 +8,7 @@ import { AuthComponent } from "./auth/auth/auth.component";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { LoginButtonComponent } from "./reusable/auth/login-button/login-button.component";
 import { HomeComponent } from "./home/home.component";
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { HomeComponent } from "./home/home.component";
     AuthComponent,
     LoginButtonComponent,
     HomeComponent,
+    LandingPageComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [
