@@ -1,18 +1,16 @@
-import { AuthService } from "./../../services/auth.service";
 import { Component, OnInit } from "@angular/core";
 
 @Component({
   selector: "app-auth",
-  templateUrl: "./auth.component.html"
+  templateUrl: "./auth.component.html",
 })
 export class AuthComponent implements OnInit {
-  constructor(private authService: AuthService) {}
+  constructor() {}
 
   ngOnInit() {
-    const url = "/profile";
+    const url = "/home";
     window.opener.open(url, "_self");
     window.opener.focus();
     window.close();
-    this.authService.checkAuth();
   }
 }

@@ -1,12 +1,11 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { BehaviorSubject } from "rxjs";
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class AuthService {
-  public isAuthenticated = new BehaviorSubject(false);
+  public isAuthenticated = false;
 
   constructor(private http: HttpClient) {}
 
@@ -20,11 +19,16 @@ export class AuthService {
     window.open(url, name, specs);
   }
 
+  getProfile() {
+    return this.http.get("http://localhost:5000/api/auth/profile");
+  }
+
   checkAuth() {
-    return this.http
+    this.http
       .get("http://localhost:5000/api/auth/checkAuth")
       .subscribe((data: { isAuthenticated: boolean }) => {
-        this.isAuthenticated.next(data.isAuthenticated);
+        this.isAuthenticated = data.isAuthenticated;
+        localStorage.setItem("authenticated", `${data.isAuthenticated}`);
       });
   }
 }
