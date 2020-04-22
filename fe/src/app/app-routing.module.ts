@@ -1,5 +1,4 @@
 import { LandingPageComponent } from "./landing-page/landing-page.component";
-import { LoginButtonComponent } from "./reusable/auth/login-button/login-button.component";
 import { HomeComponent } from "./home/home.component";
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
@@ -19,10 +18,6 @@ const routes: Routes = [
   {
     path: "",
     component: LandingPageComponent,
-  },
-  {
-    path: "login",
-    component: LoginButtonComponent,
   },
 ];
 
