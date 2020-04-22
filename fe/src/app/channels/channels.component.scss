@@ -6,15 +6,18 @@
   border-radius: $radius-md;
   margin-top: $ma-sm;
   min-height: 80vh;
+  background: white;
 }
 
 .channel-nav {
   display: flex;
 
-  p {
+  button {
     margin-right: $ma-sm;
     padding: $pd-sm;
     border-radius: $radius-md;
     border: 1px solid $accent-orange;
+    cursor: pointer;
+    background: white;
   }
 }
