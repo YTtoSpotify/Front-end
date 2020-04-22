@@ -1,0 +1,28 @@
+@import "../app-variables.scss";
+
+.home-container {
+  display: grid;
+  grid-template-areas: "welcome available current";
+  column-gap: $ma-sm;
+  h1 {
+    font-size: $h1-fs;
+    font-weight: 300;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+  .user-welcome {
+    grid-area: "welcome";
+    align-self: center;
+  }
+
+  .new-sub-container {
+    grid-area: "available";
+  }
+
+  .current-sub-container {
+    grid-area: "current";
+  }
+}
