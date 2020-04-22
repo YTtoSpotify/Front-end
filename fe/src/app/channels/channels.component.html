@@ -3,8 +3,10 @@
   <button>Your channels</button>
 </div>
 <div class="channels-container">
-  <app-channel
-    *ngFor="let channel of channels"
-    [channel]="channel"
-  ></app-channel>
+  <ng-container *ngIf="channelsService.channelsObs$ | async as channels">
+    <app-channel
+      *ngFor="let channel of channels"
+      [channel]="channel"
+    ></app-channel>
+  </ng-container>
 </div>

@@ -1,4 +1,7 @@
 export interface Channel {
   name: string;
-  photo: string;
+  img: string;
+  _id: string;
+  ytId: string;
+  url: string;
 }
