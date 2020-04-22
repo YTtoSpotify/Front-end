@@ -12,17 +12,11 @@
   img {
     max-height: 99%;
     border-radius: 5px 0 0 5px;
+    margin-right: $ma-sm;
   }
 
   div {
     text-align: left;
     width: 50%;
-  }
-  h6 {
-    font-size: $h6-fs;
-  }
-
-  input {
-    margin-right: $ma-md;
   }
 }
