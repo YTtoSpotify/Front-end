@@ -3,11 +3,12 @@
 .channel {
   border: 1px solid $accent-blue;
   height: 50px;
-  margin: $ma-sm 0;
+  margin-bottom: $ma-sm;
   border-radius: 5px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   img {
     max-height: 101%;
     border-radius: 5px 0 0 5px;

@@ -1,24 +1,15 @@
 @import "../app-variables.scss";
 
 .home-container {
-  display: grid;
-  grid-template-areas: "welcome welcome channels channels channels channels";
-  column-gap: $ma-sm;
+  display: flex;
+  justify-content: space-around;
   h1 {
     font-size: $h1-fs;
     font-weight: 300;
-    text-align: center;
   }
 
   h3 {
-    font-size: 1.5rem;
+    font-size: $h3-fs;
     font-weight: 500;
-  }
-  .user-welcome {
-    grid-area: "welcome";
-  }
-
-  app-channels {
-    grid-area: "channels";
   }
 }

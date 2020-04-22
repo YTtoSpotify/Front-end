@@ -1,11 +1,24 @@
 @import "../app-variables.scss";
 
 .channels-container {
-  padding: $pd-sm;
+  padding: $pd-sm $pd-lg;
   border: 2px solid $accent-blue;
   border-radius: $radius-md;
   margin-top: $ma-sm;
-  min-height: 80vh;
+  max-width: 75vw;
+  background: white;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  app-channel {
+    width: 48%;
+  }
+}
+
+button {
+  border: 1px solid $accent-orange;
+  cursor: pointer;
   background: white;
 }
 
@@ -14,10 +27,23 @@
 
   button {
     margin-right: $ma-sm;
-    padding: $pd-sm;
-    border-radius: $radius-md;
-    border: 1px solid $accent-orange;
-    cursor: pointer;
-    background: white;
+  }
+
+  .search-input {
+    position: relative;
+
+    img {
+      position: absolute;
+      right: 2px;
+      top: 9px;
+    }
+
+    input {
+      border: none;
+      border-bottom: 1px solid $accent-orange;
+      background: none;
+      height: 100%;
+      padding: 0 2px;
+    }
   }
 }
