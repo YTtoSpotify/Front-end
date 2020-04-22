@@ -3,7 +3,12 @@
   <button class="btn">Your channels</button>
 
   <div class="search-input">
-    <input type="text" placeholder="Search channels" />
+    <input
+      type="text"
+      #channelSearchInput
+      placeholder="Search channels"
+      [(ngModel)]="channelsService.nameFilter"
+    />
     <img src="../../assets//icons/search.svg" alt="magnifying glass" />
   </div>
 </div>
