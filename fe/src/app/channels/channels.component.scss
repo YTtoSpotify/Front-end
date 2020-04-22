@@ -1,18 +1,26 @@
 @import "../app-variables.scss";
 
 .channels-container {
-  padding: $pd-sm $pd-lg;
+  padding: $pd-sm $pd-md;
   border: 2px solid $accent-blue;
   border-radius: $radius-md;
   margin-top: $ma-sm;
-  max-width: 75vw;
+  min-width: 60vw;
+  max-width: 60vw;
+  min-height: 40vh;
   background: white;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-
   app-channel {
     width: 48%;
+  }
+
+  .nav-buttons {
+    height: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
   }
 }
 

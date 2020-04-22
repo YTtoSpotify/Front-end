@@ -2,18 +2,22 @@
 
 .channel {
   border: 1px solid $accent-blue;
-  height: 50px;
   margin-bottom: $ma-sm;
   border-radius: 5px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 60px;
 
   img {
-    max-height: 101%;
+    max-height: 99%;
     border-radius: 5px 0 0 5px;
   }
 
+  div {
+    text-align: left;
+    width: 50%;
+  }
   h6 {
     font-size: $h6-fs;
   }
