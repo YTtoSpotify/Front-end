@@ -11,6 +11,6 @@ export class ChannelsComponent implements OnInit {
   constructor(public channelsService: ChannelsService) {}
 
   ngOnInit() {
-    this.channelsService.getAllChannels();
+    this.channelsService.getChannels();
   }
 }

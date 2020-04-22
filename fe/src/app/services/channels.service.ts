@@ -9,15 +9,42 @@ import { environment } from "../../environments/environment";
 })
 export class ChannelsService {
   private channels = new BehaviorSubject<Channel[]>([]);
+  private page: number;
+  private totalChannelPages: number;
+
+  public totalChannelsCount: number;
+
   private serverUrl = `${environment.serverUrl}/channels`;
 
   public channelsObs$: Observable<Channel[]> = this.channels.asObservable();
 
   constructor(private http: HttpClient) {}
 
-  getAllChannels() {
-    this.http.get(this.serverUrl).subscribe((channels: Channel[]) => {
-      this.channels.next(channels);
-    });
+  getChannels(page = 1) {
+    this.http
+      .get<{
+        channels: Channel[];
+        currentPage: number;
+        numOfChannels: number;
+        pages: number;
+      }>(this.serverUrl, {
+        params: {
+          page: page.toString(),
+        },
+      })
+      .subscribe((data) => {
+        this.channels.next(data.channels);
+        this.totalChannelPages = data.numOfChannels;
+        this.totalChannelPages = data.pages;
+        this.page = data.currentPage;
+      });
+  }
+
+  switchPage(direction: "next" | "prev") {
+    if (direction === "next" && this.page < this.totalChannelPages) {
+      this.getChannels(this.page + 1);
+    } else if (direction === "prev" && this.page > 1) {
+      this.getChannels(this.page - 1);
+    }
   }
 }
