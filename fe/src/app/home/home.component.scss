@@ -2,7 +2,7 @@
 
 .home-container {
   display: grid;
-  grid-template-areas: "welcome available current";
+  grid-template-areas: "welcome welcome channels channels channels channels";
   column-gap: $ma-sm;
   h1 {
     font-size: $h1-fs;
@@ -18,13 +18,7 @@
     grid-area: "welcome";
   }
 
-  .new-sub-container {
-    grid-area: "available";
-    align-self: flex-end;
-  }
-
-  .current-sub-container {
-    grid-area: "current";
-    align-self: flex-end;
+  app-channels {
+    grid-area: "channels";
   }
 }

@@ -1,0 +1,20 @@
+@import "../app-variables.scss";
+
+.channels-container {
+  padding: $pd-sm;
+  border: 2px solid $accent-blue;
+  border-radius: $radius-md;
+  margin-top: $ma-sm;
+  min-height: 80vh;
+}
+
+.channel-nav {
+  display: flex;
+
+  p {
+    margin-right: $ma-sm;
+    padding: $pd-sm;
+    border-radius: $radius-md;
+    border: 1px solid $accent-orange;
+  }
+}
