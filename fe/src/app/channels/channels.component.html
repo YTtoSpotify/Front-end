@@ -1,1 +1,10 @@
-<p>channels works!</p>
+<div class="channel-nav">
+  <p>Available channels</p>
+  <p>Your channels</p>
+</div>
+<div class="channels-container">
+  <app-channel
+    *ngFor="let channel of channels"
+    [channel]="channel"
+  ></app-channel>
+</div>
