@@ -1,4 +1,4 @@
-import { ChannelsService } from "./../channels.service";
+import { ChannelsService } from "../services/channels.service";
 import { Component, OnInit } from "@angular/core";
 import { Channel } from "../interfaces/channel.interface";
 
@@ -8,10 +8,9 @@ import { Channel } from "../interfaces/channel.interface";
   styleUrls: ["./channels.component.scss"],
 })
 export class ChannelsComponent implements OnInit {
-  public channels: Channel[];
   constructor(public channelsService: ChannelsService) {}
 
   ngOnInit() {
-    this.channels = this.channelsService.channels;
+    this.channelsService.getAllChannels();
   }
 }

@@ -1,31 +1,31 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-
+import { environment } from "../../environments/environment";
 @Injectable({
   providedIn: "root",
 })
 export class AuthService {
   public isAuthenticated = false;
 
+  private serverUrl = `${environment.serverUrl}/auth`;
   constructor(private http: HttpClient) {}
 
   login() {
     // route to server login endpoint
-    const url = "http://localhost:5000/api/auth";
     const name = "spotify_login";
     const specs = "width=500,height=500";
 
     // open popup window for login
-    window.open(url, name, specs);
+    window.open(this.serverUrl, name, specs);
   }
 
   getProfile() {
-    return this.http.get("http://localhost:5000/api/auth/profile");
+    return this.http.get(`${this.serverUrl}/profile`);
   }
 
   checkAuth() {
     this.http
-      .get("http://localhost:5000/api/auth/checkAuth")
+      .get(`${this.serverUrl}/checkAuth`)
       .subscribe((data: { isAuthenticated: boolean }) => {
         this.isAuthenticated = data.isAuthenticated;
         localStorage.setItem("authenticated", `${data.isAuthenticated}`);
