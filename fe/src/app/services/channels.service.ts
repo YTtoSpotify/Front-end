@@ -9,13 +9,12 @@ import { environment } from "../../environments/environment";
 })
 export class ChannelsService {
   private channels = new BehaviorSubject<Channel[]>([]);
-  private page: number;
   private totalChannelPages: number;
-
-  public totalChannelsCount: number;
-
   private serverUrl = `${environment.serverUrl}/channels`;
 
+  public page: number;
+  public totalChannelsCount: number;
+  public nameFilter = "";
   public channelsObs$: Observable<Channel[]> = this.channels.asObservable();
 
   constructor(private http: HttpClient) {}
@@ -30,6 +29,7 @@ export class ChannelsService {
       }>(this.serverUrl, {
         params: {
           page: page.toString(),
+          nameFilter: this.nameFilter,
         },
       })
       .subscribe((data) => {
