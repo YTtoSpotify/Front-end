@@ -8,8 +8,9 @@ import { AuthComponent } from "./auth/auth/auth.component";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { HomeComponent } from "./home/home.component";
 import { LandingPageComponent } from "./landing-page/landing-page.component";
-import { ChannelsComponent } from './channels/channels.component';
-import { ChannelComponent } from './channel/channel.component';
+import { ChannelsComponent } from "./channels/channels.component";
+import { ChannelComponent } from "./channel/channel.component";
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { ChannelComponent } from './channel/channel.component';
     ChannelsComponent,
     ChannelComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
