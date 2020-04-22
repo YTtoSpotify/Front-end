@@ -11,24 +11,25 @@
 
 @include keyframes(bloat) {
   0% {
-    background: transparent;
     color: $accent-orange;
+    border: transparent;
   }
   50% {
     color: $accent-orange;
     font-size: 3.5rem;
-    background: transparent;
+  }
+  100% {
+    border: transparent;
   }
 }
 
 .landing-page {
   .highlight-text {
-    color: $primary-white;
     font-weight: 600;
     @include animation("fade-in 3s 1", "bloat 3s 1");
-    background: $accent-orange;
-    padding: $pd-xs;
-    border-radius: $radius-md;
+    color: $accent-green;
+
+    border-bottom: 3px solid $accent-orange;
   }
 
   display: flex;
@@ -45,7 +46,7 @@
   }
 
   button {
-    margin-top: 50px;
+    margin-top: 75px;
     background-size: 200% 100%;
     background-image: linear-gradient(
       to left,
