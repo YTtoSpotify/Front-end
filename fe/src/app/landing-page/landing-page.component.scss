@@ -1,0 +1,69 @@
+@import "../app-variables.scss";
+
+@include keyframes(fade-in) {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+@include keyframes(bloat) {
+  0% {
+    color: $accent-orange;
+    border: transparent;
+  }
+  50% {
+    color: $accent-orange;
+    font-size: 3.5rem;
+  }
+  100% {
+    border: transparent;
+  }
+}
+
+.landing-page {
+  .highlight-text {
+    font-weight: 600;
+    @include animation("fade-in 3s 1", "bloat 3s 1");
+    color: $accent-green;
+
+    border-bottom: 3px solid $accent-orange;
+  }
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 25vh;
+
+  h1 {
+    text-align: center;
+    font-size: $h1-fs;
+    font-weight: 300;
+    @include animation("fade-in 2s");
+  }
+
+  button {
+    margin-top: 75px;
+    background-size: 200% 100%;
+    background-image: linear-gradient(
+      to left,
+      $accent-orange 50%,
+      $primary-black 50%
+    );
+    transition: background-position 0.9s;
+
+    border-radius: $radius-md;
+    color: white;
+    font-size: 1.3rem;
+    padding: $pd-sm $pd-md;
+    cursor: pointer;
+    border: none;
+
+    &:hover {
+      background-position: -100% 0;
+    }
+  }
+}

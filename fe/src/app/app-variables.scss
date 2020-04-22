@@ -1,0 +1,51 @@
+// COLORS
+$primary-white: #f4f4f9;
+$primary-black: #1d1e18;
+$accent-orange: #ed6a5a;
+$accent-blue: #b8dbd9;
+$accent-green: #4d6a6d;
+
+// FONT-SIZE
+$h1-fs: 3rem;
+
+// PADDING
+$pd-xs: 0.32rem;
+$pd-sm: 0.64rem;
+$pd-md: 1.5rem;
+$pd-lg: 3rem;
+
+// BORDER-RADIUS
+$radius-md: 5px;
+// KEY-FRAMES
+@mixin animation($animate...) {
+  $max: length($animate);
+  $animations: "";
+
+  @for $i from 1 through $max {
+    $animations: #{$animations + nth($animate, $i)};
+
+    @if ($i < $max) {
+      $animations: #{$animations + ", "};
+    }
+  }
+
+  -webkit-animation: $animations;
+  -moz-animation: $animations;
+  -o-animation: $animations;
+  animation: $animations;
+}
+
+@mixin keyframes($animationName) {
+  @-webkit-keyframes #{$animationName} {
+    @content;
+  }
+  @-moz-keyframes #{$animationName} {
+    @content;
+  }
+  @-o-keyframes #{$animationName} {
+    @content;
+  }
+  @keyframes #{$animationName} {
+    @content;
+  }
+}

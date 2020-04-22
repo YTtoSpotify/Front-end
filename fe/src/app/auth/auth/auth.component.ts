@@ -8,7 +8,7 @@ export class AuthComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    const url = "/home";
+    const url = "/dashboard";
     window.opener.open(url, "_self");
     window.opener.focus();
     window.close();
