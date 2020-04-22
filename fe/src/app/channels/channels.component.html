@@ -1,6 +1,11 @@
 <div class="channel-nav">
-  <button>Available channels</button>
-  <button>Your channels</button>
+  <button class="btn">Available channels</button>
+  <button class="btn">Your channels</button>
+
+  <div class="search-input">
+    <input type="text" placeholder="Search channels" />
+    <img src="../../assets//icons/search.svg" alt="magnifying glass" />
+  </div>
 </div>
 <div class="channels-container">
   <ng-container *ngIf="channelsService.channelsObs$ | async as channels">
@@ -8,5 +13,13 @@
       *ngFor="let channel of channels"
       [channel]="channel"
     ></app-channel>
+    <div class="nav-buttons">
+      <button class="btn" (click)="channelsService.switchPage('prev')">
+        Previous
+      </button>
+      <button class="btn" (click)="channelsService.switchPage('next')">
+        Next
+      </button>
+    </div>
   </ng-container>
 </div>
