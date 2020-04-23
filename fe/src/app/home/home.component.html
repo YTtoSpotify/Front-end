@@ -1,6 +1,8 @@
 <div class="home-container">
   <div class="user-welcome">
-    <h1>Hello Jeff!</h1>
+    <ng-container *ngIf="(userService.userObs$ | async).firstName as user">
+      <h1>Hello {{ user }}!</h1>
+    </ng-container>
   </div>
   <app-channels></app-channels>
 </div>
