@@ -1,8 +1,9 @@
+import { Channel } from "./channel.interface";
 export interface User {
   hasPlaylist: boolean;
   _id: string;
   email: string;
-  subbedChannels: [];
+  subbedChannels: Channel[];
   displayName: string;
   username: string;
   spotifyId: string;

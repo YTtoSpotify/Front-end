@@ -19,10 +19,6 @@ export class AuthService {
     window.open(this.serverUrl, name, specs);
   }
 
-  getProfile() {
-    return this.http.get(`${this.serverUrl}/profile`);
-  }
-
   checkAuth() {
     this.http
       .get(`${this.serverUrl}/checkAuth`)
