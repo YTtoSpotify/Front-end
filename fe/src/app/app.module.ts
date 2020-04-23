@@ -11,6 +11,7 @@ import { LandingPageComponent } from "./landing-page/landing-page.component";
 import { ChannelsComponent } from "./channels/channels.component";
 import { ChannelComponent } from "./channel/channel.component";
 import { FormsModule } from "@angular/forms";
+import { NotyfModule } from "ng-notyf";
 
 @NgModule({
   declarations: [
@@ -21,7 +22,13 @@ import { FormsModule } from "@angular/forms";
     ChannelsComponent,
     ChannelComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    NotyfModule,
+  ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

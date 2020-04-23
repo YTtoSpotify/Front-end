@@ -1,3 +1,4 @@
+import { NotyfFlashService } from "./notyf.service";
 import { BehaviorSubject, Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { Channel } from "../interfaces/channel.interface";
@@ -17,7 +18,10 @@ export class ChannelsService {
   public nameFilter = "";
   public channelsObs$: Observable<Channel[]> = this.channels.asObservable();
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private notyfService: NotyfFlashService
+  ) {}
 
   get isNextPage(): boolean {
     return this.page !== this.totalChannelPages;
@@ -40,12 +44,15 @@ export class ChannelsService {
           nameFilter: this.nameFilter,
         },
       })
-      .subscribe((data) => {
-        this.channels.next(data.channels);
-        this.totalChannelPages = data.numOfChannels;
-        this.totalChannelPages = data.pages;
-        this.page = data.currentPage;
-      });
+      .subscribe(
+        (data) => {
+          this.channels.next(data.channels);
+          this.totalChannelPages = data.numOfChannels;
+          this.totalChannelPages = data.pages;
+          this.page = data.currentPage;
+        },
+        (err) => this.notyfService.errorNotyf(err)
+      );
   }
 
   switchPage(direction: "next" | "prev") {
