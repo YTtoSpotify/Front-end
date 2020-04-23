@@ -1,3 +1,4 @@
+import { UserService } from "./../services/user.service";
 import { Channel } from "./../interfaces/channel.interface";
 import { Component, OnInit, Input } from "@angular/core";
 
@@ -8,7 +9,11 @@ import { Component, OnInit, Input } from "@angular/core";
 })
 export class ChannelComponent implements OnInit {
   @Input() channel: Channel;
-  constructor() {}
+  constructor(private userService: UserService) {}
 
   ngOnInit() {}
+
+  handleAddChannel() {
+    this.userService.addChannelToUser(this.channel._id);
+  }
 }

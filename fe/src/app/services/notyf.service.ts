@@ -9,7 +9,7 @@ export class NotyfFlashService {
   constructor(private notyf: NotyfService) {}
 
   successNotyf(message: string) {
-    this.notyf.toastContainerStyle = { left: "0" };
+    this.notyf.toastContainerStyle = { left: "40%" };
 
     this.notyf.success(message);
   }
