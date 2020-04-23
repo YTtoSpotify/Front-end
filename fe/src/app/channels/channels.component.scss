@@ -21,6 +21,14 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+
+    .highlight-text {
+      color: $accent-orange;
+    }
+
+    .request-btn {
+      border: 1px solid black;
+    }
   }
 }
 

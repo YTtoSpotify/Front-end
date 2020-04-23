@@ -9,7 +9,7 @@
       placeholder="Search channels"
       [(ngModel)]="channelsService.nameFilter"
     />
-    <img src="../../assets//icons/search.svg" alt="magnifying glass" />
+    <img src="../../assets/icons/search.svg" alt="magnifying glass" />
   </div>
 </div>
 <div class="channels-container">
@@ -19,10 +19,21 @@
       [channel]="channel"
     ></app-channel>
     <div class="nav-buttons">
-      <button class="btn" (click)="channelsService.switchPage('prev')">
+      <button
+        class="btn"
+        (click)="channelsService.switchPage('prev')"
+        [disabled]="!channelsService.isPrevPage"
+      >
         Previous
       </button>
-      <button class="btn" (click)="channelsService.switchPage('next')">
+      <button class="btn request-btn">
+        We don't have it? <span class="highlight-text">Request it</span>
+      </button>
+      <button
+        class="btn"
+        (click)="channelsService.switchPage('next')"
+        [disabled]="!channelsService.isNextPage"
+      >
         Next
       </button>
     </div>

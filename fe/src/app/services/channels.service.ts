@@ -9,15 +9,23 @@ import { environment } from "../../environments/environment";
 })
 export class ChannelsService {
   private channels = new BehaviorSubject<Channel[]>([]);
-  private totalChannelPages: number;
   private serverUrl = `${environment.serverUrl}/channels`;
 
+  public totalChannelPages: number;
   public page: number;
   public totalChannelsCount: number;
   public nameFilter = "";
   public channelsObs$: Observable<Channel[]> = this.channels.asObservable();
 
   constructor(private http: HttpClient) {}
+
+  get isNextPage(): boolean {
+    return this.page !== this.totalChannelPages;
+  }
+
+  get isPrevPage(): boolean {
+    return this.page > 1;
+  }
 
   getChannels(page = 1) {
     this.http
