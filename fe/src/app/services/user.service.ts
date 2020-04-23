@@ -16,7 +16,21 @@ export class UserService {
 
   addChannelToUser(channelId) {
     this.http
-      .put<{ message: string }>(`${this.serverUrl}/addChannel`, { channelId })
-      .subscribe((data) => this.notyfService.successNotyf(data.message));
+      .put<{ message: string }>(`${this.serverUrl}/addChannel/${channelId}`, {})
+      .subscribe(
+        (data) => this.notyfService.successNotyf(data.message),
+        (err) => this.notyfService.errorNotyf(err)
+      );
+  }
+
+  deleteChannelFromUser(channelId) {
+    this.http
+      .delete<{ message: string }>(
+        `${this.serverUrl}/deleteChannel/${channelId}`
+      )
+      .subscribe(
+        (data) => this.notyfService.successNotyf("Channel removed."),
+        (err) => this.notyfService.errorNotyf(err)
+      );
   }
 }

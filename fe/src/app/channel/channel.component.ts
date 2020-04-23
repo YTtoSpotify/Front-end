@@ -16,4 +16,8 @@ export class ChannelComponent implements OnInit {
   handleAddChannel() {
     this.userService.addChannelToUser(this.channel._id);
   }
+
+  handleRemoveChannel() {
+    this.userService.deleteChannelFromUser(this.channel._id);
+  }
 }
