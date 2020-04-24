@@ -13,9 +13,21 @@
       placeholder="Search channels"
       [(ngModel)]="channelsService.nameFilter"
     />
-    <img src="../../assets/icons/search.svg" alt="magnifying glass" />
+    <ng-container
+      *ngIf="
+        (channelsService.spinnerEventObs$ | async).type !== 'search channels';
+        else loader
+      "
+    >
+      <img src="../../assets/icons/search.svg" alt="magnifying glass" />
+    </ng-container>
+
+    <ng-template #loader>
+      <ring-loader color="#4D6A6D" size="24" class="spinner"></ring-loader>
+    </ng-template>
   </div>
 </div>
+
 <div class="channels-container">
   <ng-container *ngIf="channelsService.channelsObs$ | async as channels">
     <app-channel

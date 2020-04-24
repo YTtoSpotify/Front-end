@@ -48,7 +48,8 @@ button {
   .search-input {
     position: relative;
 
-    img {
+    img,
+    .spinner {
       position: absolute;
       right: 2px;
       top: 9px;

@@ -1,6 +1,8 @@
 import {
   ChannelsHttpResponse,
   FilterTypes,
+  ChannelSpinnerEvent,
+  ChannelSpinnerEvents,
 } from "./../interfaces/channels.interface";
 import { NotyfFlashService } from "./notyf.service";
 import { BehaviorSubject, Observable } from "rxjs";
@@ -14,6 +16,9 @@ import { environment } from "../../environments/environment";
 })
 export class ChannelsService {
   private channels = new BehaviorSubject<Channel[]>([]);
+  private spinnerEvent = new BehaviorSubject<ChannelSpinnerEvent>({
+    type: null,
+  });
   private serverUrl = `${environment.serverUrl}/channels`;
 
   public totalChannelPages: number;
@@ -21,7 +26,11 @@ export class ChannelsService {
   public totalChannelsCount: number;
   public nameFilter = "";
   public channelsObs$: Observable<Channel[]> = this.channels.asObservable();
+  public spinnerEventObs$: Observable<
+    ChannelSpinnerEvent
+  > = this.spinnerEvent.asObservable();
 
+  public;
   public channelFilter: FilterTypes = "available";
 
   constructor(
@@ -55,7 +64,10 @@ export class ChannelsService {
         },
       })
       .subscribe(
-        (data) => this.setChannelPaginationData(data),
+        (data) => {
+          this.setChannelPaginationData(data);
+          this.spinnerEvent.next({ type: null });
+        },
         (err) => this.notyfService.errorNotyf(err)
       );
   }
@@ -83,6 +95,10 @@ export class ChannelsService {
 
   public toggleUserChannelFilter(filter: FilterTypes) {
     this.channelFilter = filter;
+  }
+
+  public setSpinner(type: ChannelSpinnerEvents, channelId?: string) {
+    this.spinnerEvent.next({ type, _id: channelId });
   }
 
   private setChannelPaginationData(paginationData: ChannelsHttpResponse) {

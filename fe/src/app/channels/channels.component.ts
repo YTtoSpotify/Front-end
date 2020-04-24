@@ -1,4 +1,7 @@
-import { FilterTypes } from "./../interfaces/channels.interface";
+import {
+  FilterTypes,
+  ChannelSpinnerEvents,
+} from "./../interfaces/channels.interface";
 import { ChannelsService } from "../services/channels.service";
 import {
   Component,
@@ -38,11 +41,12 @@ export class ChannelsComponent implements OnInit, OnDestroy {
           return event.target.value;
         }),
         // wait x milliseconds between key event to make request
-        debounceTime(1500),
+        debounceTime(500),
         // if current query is different that previous query
         distinctUntilChanged()
       )
       .subscribe(() => {
+        this.channelsService.setSpinner(ChannelSpinnerEvents.SEARCHCHANNELS);
         this.channelsService.getChannels(this.channelsService.page);
       });
   }
