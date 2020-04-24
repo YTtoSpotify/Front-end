@@ -9,13 +9,19 @@ export class NotyfFlashService {
   constructor(private notyf: NotyfService) {}
 
   successNotyf(message: string) {
-    this.notyf.toastContainerStyle = { left: "40%" };
+    this.notyf.toastContainerStyle = {
+      left: "40%",
+      "text-align": "center",
+    };
 
     this.notyf.success(message);
   }
 
   errorNotyf(error: HttpErrorResponse) {
-    this.notyf.toastContainerStyle = { left: "40%" };
+    this.notyf.toastContainerStyle = {
+      left: "40%",
+      "text-align": "center",
+    };
 
     const message =
       error.error.message || `${error.status} ${error.statusText}`;

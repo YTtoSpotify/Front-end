@@ -22,7 +22,7 @@ export class ChannelsService {
   public nameFilter = "";
   public channelsObs$: Observable<Channel[]> = this.channels.asObservable();
 
-  public channelFilter: FilterTypes | "user" = "all";
+  public channelFilter: FilterTypes = "all";
 
   constructor(
     private http: HttpClient,
@@ -35,6 +35,10 @@ export class ChannelsService {
 
   get isPrevPage(): boolean {
     return this.page > 1;
+  }
+
+  get channelsArray(): Channel[] {
+    return this.channels.getValue();
   }
 
   getChannels(page = 1) {
@@ -58,11 +62,19 @@ export class ChannelsService {
 
   switchPage(direction: "next" | "prev") {
     if (direction === "next" && this.page < this.totalChannelPages) {
-      console.log(direction);
       this.getChannels(this.page + 1);
     } else if (direction === "prev" && this.page > 1) {
       this.getChannels(this.page - 1);
     }
+  }
+
+  public changeChannelUserSub(channelId: string) {
+    const channels = this.channelsArray.map((channel) => {
+      if (channel._id === channelId) channel.isUserSub = !channel.isUserSub;
+      return channel;
+    });
+
+    this.channels.next(channels);
   }
 
   public toggleUserChannelFilter(filter: FilterTypes) {

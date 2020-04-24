@@ -1,3 +1,4 @@
+import { ChannelsService } from "./channels.service";
 import { BehaviorSubject } from "rxjs";
 import { NotyfFlashService } from "./notyf.service";
 import { HttpClient } from "@angular/common/http";
@@ -17,19 +18,22 @@ export class UserService {
 
   constructor(
     private http: HttpClient,
-    private notyfService: NotyfFlashService
+    private notyfService: NotyfFlashService,
+    private channelsService: ChannelsService
   ) {}
 
   get user() {
     return this.userBS.getValue();
   }
 
-  addChannelToUser(channelId) {
+  addChannelToUser(channelId: string) {
     this.http
       .put<{ message: string }>(`${this.serverUrl}/addChannel/${channelId}`, {})
       .subscribe(
-        // TODO call next on user with new channel
-        (data) => this.notyfService.successNotyf(data.message),
+        (data) => {
+          this.channelsService.changeChannelUserSub(channelId);
+          this.notyfService.successNotyf(data.message);
+        },
         (err) => this.notyfService.errorNotyf(err)
       );
   }
@@ -49,9 +53,10 @@ export class UserService {
         `${this.serverUrl}/deleteChannel/${channelId}`
       )
       .subscribe(
-        // TODO call next on user without removed channel
-
-        () => this.notyfService.successNotyf("Channel removed."),
+        () => {
+          this.channelsService.changeChannelUserSub(channelId);
+          this.notyfService.successNotyf("Channel removed.");
+        },
         (err) => this.notyfService.errorNotyf(err)
       );
   }
