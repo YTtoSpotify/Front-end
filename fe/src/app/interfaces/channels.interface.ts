@@ -4,6 +4,7 @@ export interface Channel {
   _id: string;
   ytId: string;
   url: string;
+  isUserSub: boolean;
 }
 
 export interface ChannelsHttpResponse {

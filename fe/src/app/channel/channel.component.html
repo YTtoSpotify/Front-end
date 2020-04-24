@@ -6,7 +6,16 @@
 
   <img
     src="../../assets/icons/plus-square.svg"
-    alt="plus sign "
+    alt="plus icon "
     (click)="handleAddChannel()"
+    *ngIf="!channel.isUserSub; else isUserChannel"
   />
+
+  <ng-template #isUserChannel>
+    <img
+      src="../../assets/icons/x-square.svg"
+      alt="x icon with box around it"
+      (click)="handleRemoveChannel()"
+    />
+  </ng-template>
 </div>
