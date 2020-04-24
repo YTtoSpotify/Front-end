@@ -22,7 +22,7 @@ export class ChannelsService {
   public nameFilter = "";
   public channelsObs$: Observable<Channel[]> = this.channels.asObservable();
 
-  public channelFilter: FilterTypes = "all";
+  public channelFilter: FilterTypes = "available";
 
   constructor(
     private http: HttpClient,
@@ -69,10 +69,15 @@ export class ChannelsService {
   }
 
   public changeChannelUserSub(channelId: string) {
-    const channels = this.channelsArray.map((channel) => {
+    //
+    let channels = this.channelsArray.map((channel) => {
       if (channel._id === channelId) channel.isUserSub = !channel.isUserSub;
       return channel;
     });
+
+    if (this.channelFilter === "user") {
+      channels = channels.filter((channel) => channel.isUserSub);
+    }
 
     this.channels.next(channels);
   }

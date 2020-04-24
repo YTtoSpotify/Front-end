@@ -14,4 +14,4 @@ export interface ChannelsHttpResponse {
   totalPagesCount: number;
 }
 
-export type FilterTypes = "all" | "user";
+export type FilterTypes = "available" | "user";
