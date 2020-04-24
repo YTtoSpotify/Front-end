@@ -12,6 +12,7 @@ import { ChannelsComponent } from "./channels/channels.component";
 import { ChannelComponent } from "./channel/channel.component";
 import { FormsModule } from "@angular/forms";
 import { NotyfModule } from "ng-notyf";
+import { RingLoaderModule } from "@bit/joshk.ng-spinners.ring-loader";
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { NotyfModule } from "ng-notyf";
     HttpClientModule,
     FormsModule,
     NotyfModule,
+    RingLoaderModule,
   ],
   providers: [
     {

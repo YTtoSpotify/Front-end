@@ -60,3 +60,45 @@ $radius-md: 5px;
     @content;
   }
 }
+
+$circle-radius: 10;
+
+@function get-dash-value($radius, $percentage) {
+  // Using $radius, calculate circumference.
+  $circumference: 2 * 3.1415927 * $radius;
+
+  // Convert percentage to decimal.
+  // i.e. 50% = 0.5.
+  $percentage-as-decimal: $percentage / 100%;
+
+  // Return unit value.
+  @return $circumference * $percentage-as-decimal;
+}
+
+@keyframes circle--animation {
+  0%,
+  25% {
+    stroke-dashoffset: get-dash-value($circle-radius, 97%);
+    transform: rotate(0);
+  }
+
+  50%,
+  75% {
+    stroke-dashoffset: get-dash-value($circle-radius, 25%);
+    transform: rotate(45deg);
+  }
+
+  100% {
+    stroke-dashoffset: get-dash-value($circle-radius, 97%);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes svg-circle--animation {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
+}

@@ -39,3 +39,20 @@ h5 {
 h6 {
   font-size: $h6-fs;
 }
+
+// SVG Loader animation
+
+.circle-svg {
+  animation: 2s linear infinite svg--animation;
+}
+
+.circle-loader {
+  fill: transparent;
+  stroke: #2f3d4c;
+  stroke-width: 2;
+  stroke-linecap: round;
+  transform-origin: 50% 50%;
+  stroke-dashoffset: 0;
+  stroke-dasharray: 63;
+  animation: 1.4s ease-in-out infinite both circle--animation;
+}

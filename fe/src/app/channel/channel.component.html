@@ -8,14 +8,19 @@
     src="../../assets/icons/plus-square.svg"
     alt="plus icon "
     (click)="handleAddChannel()"
-    *ngIf="!channel.isUserSub; else isUserChannel"
+    *ngIf="iconType === 'add'"
   />
 
-  <ng-template #isUserChannel>
-    <img
-      src="../../assets/icons/x-square.svg"
-      alt="x icon with box around it"
-      (click)="handleRemoveChannel()"
-    />
-  </ng-template>
+  <img
+    src="../../assets/icons/x-square.svg"
+    alt="x icon with box around it"
+    (click)="handleRemoveChannel()"
+    *ngIf="iconType === 'remove'"
+  />
+
+  <ring-loader
+    color="black"
+    size="24"
+    *ngIf="iconType === 'processing'"
+  ></ring-loader>
 </div>

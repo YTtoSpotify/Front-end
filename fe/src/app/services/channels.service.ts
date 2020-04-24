@@ -69,7 +69,6 @@ export class ChannelsService {
   }
 
   public changeChannelUserSub(channelId: string) {
-    //
     let channels = this.channelsArray.map((channel) => {
       if (channel._id === channelId) channel.isUserSub = !channel.isUserSub;
       return channel;
