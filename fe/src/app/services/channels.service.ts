@@ -1,7 +1,11 @@
+import {
+  ChannelsHttpResponse,
+  FilterTypes,
+} from "./../interfaces/channels.interface";
 import { NotyfFlashService } from "./notyf.service";
 import { BehaviorSubject, Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
-import { Channel } from "../interfaces/channel.interface";
+import { Channel } from "../interfaces/channels.interface";
 import { Injectable } from "@angular/core";
 import { environment } from "../../environments/environment";
 
@@ -18,6 +22,8 @@ export class ChannelsService {
   public nameFilter = "";
   public channelsObs$: Observable<Channel[]> = this.channels.asObservable();
 
+  public channelFilter: FilterTypes | "user" = "all";
+
   constructor(
     private http: HttpClient,
     private notyfService: NotyfFlashService
@@ -32,25 +38,20 @@ export class ChannelsService {
   }
 
   getChannels(page = 1) {
+    const url =
+      this.channelFilter === "user"
+        ? `${this.serverUrl}/userChannels`
+        : this.serverUrl;
+
     this.http
-      .get<{
-        channels: Channel[];
-        currentPage: number;
-        numOfChannels: number;
-        pages: number;
-      }>(this.serverUrl, {
+      .get<ChannelsHttpResponse>(url, {
         params: {
           page: page.toString(),
           nameFilter: this.nameFilter,
         },
       })
       .subscribe(
-        (data) => {
-          this.channels.next(data.channels);
-          this.totalChannelPages = data.numOfChannels;
-          this.totalChannelPages = data.pages;
-          this.page = data.currentPage;
-        },
+        (data) => this.setChannelPaginationData(data),
         (err) => this.notyfService.errorNotyf(err)
       );
   }
@@ -61,5 +62,16 @@ export class ChannelsService {
     } else if (direction === "prev" && this.page > 1) {
       this.getChannels(this.page - 1);
     }
+  }
+
+  public toggleUserChannelFilter(filter: FilterTypes) {
+    this.channelFilter = filter;
+  }
+
+  private setChannelPaginationData(paginationData: ChannelsHttpResponse) {
+    this.channels.next(paginationData.channels);
+    this.totalChannelPages = paginationData.numOfChannels;
+    this.totalChannelPages = paginationData.pages;
+    this.page = paginationData.currentPage;
   }
 }

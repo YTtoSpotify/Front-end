@@ -1,4 +1,4 @@
-import { Channel } from "./channel.interface";
+import { Channel } from "./channels.interface";
 export interface User {
   hasPlaylist: boolean;
   _id: string;

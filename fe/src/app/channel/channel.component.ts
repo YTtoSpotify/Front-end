@@ -1,5 +1,5 @@
 import { UserService } from "./../services/user.service";
-import { Channel } from "./../interfaces/channel.interface";
+import { Channel } from "../interfaces/channels.interface";
 import { Component, OnInit, Input } from "@angular/core";
 
 @Component({

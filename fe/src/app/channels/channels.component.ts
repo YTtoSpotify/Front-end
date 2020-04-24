@@ -1,3 +1,4 @@
+import { FilterTypes } from "./../interfaces/channels.interface";
 import { ChannelsService } from "../services/channels.service";
 import {
   Component,
@@ -44,6 +45,11 @@ export class ChannelsComponent implements OnInit, OnDestroy {
       .subscribe(() => {
         this.channelsService.getChannels(this.channelsService.page);
       });
+  }
+
+  handleUserChannelFilter(filter: FilterTypes) {
+    this.channelsService.toggleUserChannelFilter(filter);
+    this.channelsService.getChannels();
   }
 
   ngOnDestroy() {

@@ -1,6 +1,10 @@
 <div class="channel-nav">
-  <button class="btn">Available channels</button>
-  <button class="btn">Your channels</button>
+  <button class="btn" (click)="handleUserChannelFilter('all')">
+    Available channels
+  </button>
+  <button class="btn" (click)="handleUserChannelFilter('user')">
+    Your channels
+  </button>
 
   <div class="search-input">
     <input
