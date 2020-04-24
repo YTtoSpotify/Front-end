@@ -58,6 +58,7 @@ export class ChannelsService {
 
   switchPage(direction: "next" | "prev") {
     if (direction === "next" && this.page < this.totalChannelPages) {
+      console.log(direction);
       this.getChannels(this.page + 1);
     } else if (direction === "prev" && this.page > 1) {
       this.getChannels(this.page - 1);
@@ -71,7 +72,7 @@ export class ChannelsService {
   private setChannelPaginationData(paginationData: ChannelsHttpResponse) {
     this.channels.next(paginationData.channels);
     this.totalChannelPages = paginationData.numOfChannels;
-    this.totalChannelPages = paginationData.pages;
+    this.totalChannelPages = paginationData.totalPagesCount;
     this.page = paginationData.currentPage;
   }
 }

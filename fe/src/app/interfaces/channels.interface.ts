@@ -10,7 +10,7 @@ export interface ChannelsHttpResponse {
   channels: Channel[];
   currentPage: number;
   numOfChannels: number;
-  pages: number;
+  totalPagesCount: number;
 }
 
 export type FilterTypes = "all" | "user";
