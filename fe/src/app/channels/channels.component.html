@@ -1,8 +1,20 @@
 <div class="channel-nav">
-  <button class="btn" (click)="handleUserChannelFilter('available')">
+  <button
+    [ngClass]="{
+      btn: true,
+      'active-nav-btn': channelsService.channelFilter === 'available'
+    }"
+    (click)="handleUserChannelFilter('available')"
+  >
     Available channels
   </button>
-  <button class="btn" (click)="handleUserChannelFilter('user')">
+  <button
+    [ngClass]="{
+      btn: true,
+      'active-nav-btn': channelsService.channelFilter === 'user'
+    }"
+    (click)="handleUserChannelFilter('user')"
+  >
     Your channels
   </button>
 

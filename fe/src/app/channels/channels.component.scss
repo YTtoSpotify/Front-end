@@ -19,18 +19,18 @@
   ring-loader {
     margin: auto;
   }
+
   .nav-buttons {
     height: 40px;
     width: 100%;
     display: flex;
     justify-content: space-between;
 
-    .highlight-text {
-      color: $accent-orange;
-    }
-
     .request-btn {
       border: 1px solid black;
+    }
+    .highlight-text {
+      color: $accent-orange;
     }
   }
 }
@@ -46,6 +46,11 @@ button {
 
   button {
     margin-right: $ma-sm;
+  }
+
+  .active-nav-btn {
+    background: $accent-orange;
+    color: white;
   }
 
   .search-input {
