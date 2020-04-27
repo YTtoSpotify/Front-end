@@ -1,4 +1,4 @@
-import { AuthService } from "./../services/auth.service";
+import { UserService } from "./../services/user.service";
 import { Component, OnInit } from "@angular/core";
 
 @Component({
@@ -7,9 +7,9 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./home.component.scss"],
 })
 export class HomeComponent implements OnInit {
-  constructor(private authService: AuthService) {}
+  constructor(public userService: UserService) {}
 
   ngOnInit() {
-    this.authService.getProfile().subscribe((data) => {});
+    this.userService.getUser();
   }
 }

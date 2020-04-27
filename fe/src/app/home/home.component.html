@@ -1,1 +1,8 @@
-<p>home works!</p>
+<div class="home-container">
+  <div class="user-welcome">
+    <ng-container *ngIf="(userService.userObs$ | async).firstName as user">
+      <h1>Hello {{ user }}!</h1>
+    </ng-container>
+  </div>
+  <app-channels></app-channels>
+</div>

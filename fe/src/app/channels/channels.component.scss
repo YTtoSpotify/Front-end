@@ -1,0 +1,72 @@
+@import "../app-variables.scss";
+
+.channels-container {
+  padding: $pd-sm $pd-md;
+  border: 2px solid $accent-blue;
+  border-radius: $radius-md;
+  margin-top: $ma-sm;
+  min-width: 60vw;
+  max-width: 60vw;
+  min-height: 40vh;
+  background: white;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  app-channel {
+    width: 48%;
+  }
+
+  ring-loader {
+    margin: auto;
+  }
+
+  .nav-buttons {
+    height: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    .request-btn {
+      border: 1px solid black;
+    }
+    .highlight-text {
+      color: $accent-orange;
+    }
+  }
+}
+
+button {
+  border: 1px solid $accent-orange;
+  background: white;
+}
+
+.channel-nav {
+  display: flex;
+
+  button {
+    margin-right: $ma-sm;
+  }
+
+  .active-nav-btn {
+    background: $accent-orange;
+    color: white;
+  }
+
+  .search-input {
+    display: flex;
+    align-items: center;
+    background: white;
+    position: relative;
+    padding: $pd-sm;
+    border: 1px solid $accent-orange;
+    .search-icon {
+      margin-right: $ma-sm;
+    }
+
+    input {
+      border: none;
+      background: none;
+      height: 100%;
+    }
+  }
+}

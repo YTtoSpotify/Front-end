@@ -1,0 +1,22 @@
+@import "../app-variables.scss";
+
+.channel {
+  border: 1px solid $accent-blue;
+  margin-bottom: $ma-sm;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+
+  padding-right: 5px;
+  img {
+    max-height: 100%;
+    border-radius: 5px 0 0 5px;
+  }
+
+  div {
+    text-align: left;
+    width: 50%;
+  }
+}

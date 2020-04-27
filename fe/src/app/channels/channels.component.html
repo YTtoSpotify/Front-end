@@ -1,0 +1,90 @@
+<div class="channel-nav">
+  <button
+    [ngClass]="{
+      btn: true,
+      'active-nav-btn': channelsService.channelFilter === 'available'
+    }"
+    (click)="handleUserChannelFilter('available')"
+  >
+    Available channels
+  </button>
+  <button
+    [ngClass]="{
+      btn: true,
+      'active-nav-btn': channelsService.channelFilter === 'user'
+    }"
+    (click)="handleUserChannelFilter('user')"
+  >
+    Your channels
+  </button>
+
+  <div class="search-input">
+    <div class="search-icon">
+      <img src="../../assets/icons/search.svg" alt="magnifying glass" />
+    </div>
+    <input
+      type="text"
+      #channelSearchInput
+      placeholder="Search channels"
+      [(ngModel)]="channelsService.nameFilter"
+    />
+    <ng-container
+      *ngIf="
+        !(spinnersService.searchSpinner$ | async) as searchSpinner;
+        else loader
+      "
+    >
+      <img
+        src="../../assets/icons/x-square.svg"
+        alt="x character in a square"
+        class="ico-btn"
+        (click)="handleClearName()"
+      />
+    </ng-container>
+
+    <ng-template #loader>
+      <ring-loader color="#4D6A6D" size="24"></ring-loader>
+    </ng-template>
+  </div>
+</div>
+
+<div class="channels-container">
+  <ng-container
+    *ngIf="{
+      channels$: channelsService.channelsObs$ | async,
+      fetchingSpinner$: spinnersService.fetchChannelsSpinner$ | async
+    } as observables"
+  >
+    <ng-container
+      *ngIf="!observables.fetchingSpinner$ as isFetching; else channelLoader"
+    >
+      <app-channel
+        *ngFor="let channel of observables.channels$"
+        [channel]="channel"
+      ></app-channel>
+      <div class="nav-buttons">
+        <button
+          class="btn"
+          (click)="channelsService.switchPage('prev')"
+          [disabled]="!channelsService.isPrevPage"
+        >
+          Previous
+        </button>
+        <button class="btn request-btn">
+          We don't have it? <span class="highlight-text">Request it</span>
+        </button>
+        <button
+          class="btn"
+          (click)="channelsService.switchPage('next')"
+          [disabled]="!channelsService.isNextPage"
+        >
+          Next
+        </button>
+      </div>
+    </ng-container>
+  </ng-container>
+
+  <ng-template #channelLoader>
+    <ring-loader color="#4D6A6D"></ring-loader>
+  </ng-template>
+</div>

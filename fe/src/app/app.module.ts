@@ -8,6 +8,11 @@ import { AuthComponent } from "./auth/auth/auth.component";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { HomeComponent } from "./home/home.component";
 import { LandingPageComponent } from "./landing-page/landing-page.component";
+import { ChannelsComponent } from "./channels/channels.component";
+import { ChannelComponent } from "./channel/channel.component";
+import { FormsModule } from "@angular/forms";
+import { NotyfModule } from "ng-notyf";
+import { RingLoaderModule } from "@bit/joshk.ng-spinners.ring-loader";
 
 @NgModule({
   declarations: [
@@ -15,8 +20,17 @@ import { LandingPageComponent } from "./landing-page/landing-page.component";
     AuthComponent,
     HomeComponent,
     LandingPageComponent,
+    ChannelsComponent,
+    ChannelComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    NotyfModule,
+    RingLoaderModule,
+  ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

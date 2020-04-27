@@ -1,0 +1,15 @@
+@import "../app-variables.scss";
+
+.home-container {
+  display: flex;
+  justify-content: space-around;
+  h1 {
+    font-size: $h1-fs;
+    font-weight: 300;
+  }
+
+  h3 {
+    font-size: $h3-fs;
+    font-weight: 500;
+  }
+}
