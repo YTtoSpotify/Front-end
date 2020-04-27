@@ -3,8 +3,6 @@ import { SpinnersService } from "./../spinners.service";
 import {
   ChannelsHttpResponse,
   FilterTypes,
-  ChannelSpinnerEvent,
-  ChannelSpinnerEvents,
 } from "./../interfaces/channels.interface";
 import { NotyfFlashService } from "./notyf.service";
 import { BehaviorSubject, Observable } from "rxjs";

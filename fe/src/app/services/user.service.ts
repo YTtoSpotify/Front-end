@@ -7,7 +7,6 @@ import { environment } from "./../../environments/environment";
 import { Injectable } from "@angular/core";
 import { User } from "../interfaces/user.interface";
 import { finalize } from "rxjs/operators";
-import { ChannelSpinnerEvents } from "../interfaces/channels.interface";
 
 @Injectable({
   providedIn: "root",

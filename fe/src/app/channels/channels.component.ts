@@ -1,8 +1,5 @@
 import { SpinnersService } from "./../spinners.service";
-import {
-  FilterTypes,
-  ChannelSpinnerEvents,
-} from "./../interfaces/channels.interface";
+import { FilterTypes } from "./../interfaces/channels.interface";
 import { ChannelsService } from "../services/channels.service";
 import {
   Component,
@@ -12,12 +9,7 @@ import {
   OnDestroy,
 } from "@angular/core";
 import { fromEvent, Subscription } from "rxjs";
-import {
-  map,
-  debounceTime,
-  distinctUntilChanged,
-  finalize,
-} from "rxjs/operators";
+import { map, debounceTime, distinctUntilChanged } from "rxjs/operators";
 
 @Component({
   selector: "app-channels",
@@ -28,7 +20,6 @@ export class ChannelsComponent implements OnInit, OnDestroy {
   private inputEventSub: Subscription;
   public nameFilter: string;
 
-  public spinnerEnums = ChannelSpinnerEvents;
   @ViewChild("channelSearchInput", { static: true })
   channelSearchInput: ElementRef;
   constructor(

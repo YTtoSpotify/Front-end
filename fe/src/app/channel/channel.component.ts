@@ -1,10 +1,7 @@
 import { SpinnersService } from "./../spinners.service";
 import { ChannelsService } from "./../services/channels.service";
 import { UserService } from "./../services/user.service";
-import {
-  Channel,
-  ChannelSpinnerEvents,
-} from "../interfaces/channels.interface";
+import { Channel } from "../interfaces/channels.interface";
 import { Component, OnInit, Input } from "@angular/core";
 
 @Component({
@@ -14,8 +11,6 @@ import { Component, OnInit, Input } from "@angular/core";
 })
 export class ChannelComponent implements OnInit {
   @Input() channel: Channel;
-
-  public spinnerTypeEnums = ChannelSpinnerEvents;
 
   constructor(
     private userService: UserService,

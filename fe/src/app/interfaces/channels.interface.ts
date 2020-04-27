@@ -15,14 +15,3 @@ export interface ChannelsHttpResponse {
 }
 
 export type FilterTypes = "available" | "user";
-
-export enum ChannelSpinnerEvents {
-  INDIVIDUALCHANNEL = "channel processing",
-  SEARCHCHANNELS = "search channels",
-  FETCHCHANNELS = "fetch channels",
-}
-
-export interface ChannelSpinnerEvent {
-  //   type: ChannelSpinnerEvents;
-  _id?: string;
-}
