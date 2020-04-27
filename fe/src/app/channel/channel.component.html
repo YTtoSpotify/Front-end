@@ -4,23 +4,28 @@
     <h6>{{ channel.name }}</h6>
   </div>
 
-  <img
-    src="../../assets/icons/plus-square.svg"
-    alt="plus icon "
-    (click)="handleAddChannel()"
-    *ngIf="iconType === 'add'"
-  />
+  <ng-container
+    *ngIf="
+      spinnersService.individualChannelSpinnerSub$ | async as spinnerChannelId
+    "
+  >
+    <ng-container *ngIf="spinnerChannelId === channel._id; else channelAction">
+      <ring-loader color="#4D6A6D" size="24"></ring-loader>
+    </ng-container>
+  </ng-container>
 
-  <img
-    src="../../assets/icons/x-square.svg"
-    alt="x icon with box around it"
-    (click)="handleRemoveChannel()"
-    *ngIf="iconType === 'remove'"
-  />
-
-  <ring-loader
-    color="black"
-    size="24"
-    *ngIf="iconType === 'processing'"
-  ></ring-loader>
+  <ng-template #channelAction>
+    <img
+      src="../../assets/icons/plus-square.svg"
+      alt="plus icon "
+      (click)="handleAddChannel()"
+      *ngIf="!channel.isUserSub"
+    />
+    <img
+      src="../../assets/icons/x-square.svg"
+      alt="x icon with box around it"
+      (click)="handleRemoveChannel()"
+      *ngIf="channel.isUserSub"
+    />
+  </ng-template>
 </div>

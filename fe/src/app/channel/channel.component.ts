@@ -1,11 +1,11 @@
-import { NotyfFlashService } from "./../services/notyf.service";
+import { SpinnersService } from "./../spinners.service";
 import { ChannelsService } from "./../services/channels.service";
 import { UserService } from "./../services/user.service";
-import { Channel } from "../interfaces/channels.interface";
+import {
+  Channel,
+  ChannelSpinnerEvents,
+} from "../interfaces/channels.interface";
 import { Component, OnInit, Input } from "@angular/core";
-import { finalize } from "rxjs/operators";
-
-type DisplayIcons = "add" | "remove" | "processing";
 
 @Component({
   selector: "app-channel",
@@ -15,49 +15,21 @@ type DisplayIcons = "add" | "remove" | "processing";
 export class ChannelComponent implements OnInit {
   @Input() channel: Channel;
 
-  public iconType: DisplayIcons;
+  public spinnerTypeEnums = ChannelSpinnerEvents;
 
   constructor(
     private userService: UserService,
-    private channelsService: ChannelsService,
-    private notyfService: NotyfFlashService
+    public channelsService: ChannelsService,
+    public spinnersService: SpinnersService
   ) {}
 
-  ngOnInit() {
-    this.setIconType();
-  }
-
-  private setIconType() {
-    this.channel.isUserSub
-      ? (this.iconType = "remove")
-      : (this.iconType = "add");
-  }
+  ngOnInit() {}
 
   handleAddChannel() {
-    this.iconType = "processing";
-    this.userService
-      .addChannelToUser(this.channel._id)
-      .pipe(finalize(() => this.setIconType()))
-      .subscribe(
-        (data) => {
-          this.channelsService.changeChannelUserSub(this.channel._id);
-          this.notyfService.successNotyf(data.message);
-        },
-        (err) => this.notyfService.errorNotyf(err)
-      );
+    this.userService.addChannelToUser(this.channel._id);
   }
 
   handleRemoveChannel() {
-    this.iconType = "processing";
-    this.userService
-      .deleteChannelFromUser(this.channel._id)
-      .pipe(finalize(() => this.setIconType()))
-      .subscribe(
-        () => {
-          this.channelsService.changeChannelUserSub(this.channel._id);
-          this.notyfService.successNotyf("Channel removed.");
-        },
-        (err) => this.notyfService.errorNotyf(err)
-      );
+    this.userService.deleteChannelFromUser(this.channel._id);
   }
 }
