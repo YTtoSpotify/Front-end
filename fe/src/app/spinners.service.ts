@@ -6,15 +6,25 @@ import { Injectable } from "@angular/core";
 })
 export class SpinnersService {
   private individualChannelSpinner = new BehaviorSubject<string>(" ");
+  private searchSpinner = new BehaviorSubject<boolean>(false);
 
-  //   TODO continue refactoring channels service spinner logic into this
-  public fetchChannelsSub$ = new Subject();
-  public searchChannelsSub$ = new Subject();
+  public fetchChannelsSpinner = new BehaviorSubject<boolean>(false);
 
-  readonly individualChannelSpinnerSub$ = this.individualChannelSpinner.asObservable();
+  readonly individualChannelSpinner$ = this.individualChannelSpinner.asObservable();
+  readonly searchSpinner$ = this.searchSpinner.asObservable();
+  readonly fetchChannelsSpinner$ = this.fetchChannelsSpinner.asObservable();
+
   constructor() {}
 
   setIndividualSpinner(channelId: string) {
     this.individualChannelSpinner.next(channelId);
+  }
+
+  setSearchSpinner(isSearching: boolean) {
+    this.searchSpinner.next(isSearching);
+  }
+
+  setFetchingSpinner(isFetching: boolean) {
+    this.fetchChannelsSpinner.next(isFetching);
   }
 }

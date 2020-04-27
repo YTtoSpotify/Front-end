@@ -1,3 +1,4 @@
+import { SpinnersService } from "./../spinners.service";
 import {
   FilterTypes,
   ChannelSpinnerEvents,
@@ -11,7 +12,12 @@ import {
   OnDestroy,
 } from "@angular/core";
 import { fromEvent, Subscription } from "rxjs";
-import { map, debounceTime, distinctUntilChanged } from "rxjs/operators";
+import {
+  map,
+  debounceTime,
+  distinctUntilChanged,
+  finalize,
+} from "rxjs/operators";
 
 @Component({
   selector: "app-channels",
@@ -22,9 +28,13 @@ export class ChannelsComponent implements OnInit, OnDestroy {
   private inputEventSub: Subscription;
   public nameFilter: string;
 
+  public spinnerEnums = ChannelSpinnerEvents;
   @ViewChild("channelSearchInput", { static: true })
   channelSearchInput: ElementRef;
-  constructor(public channelsService: ChannelsService) {}
+  constructor(
+    public channelsService: ChannelsService,
+    public spinnersService: SpinnersService
+  ) {}
 
   ngOnInit() {
     this.channelsService.getChannels();
@@ -40,13 +50,13 @@ export class ChannelsComponent implements OnInit, OnDestroy {
         map((event: any) => {
           return event.target.value;
         }),
+
         // wait x milliseconds between key event to make request
         debounceTime(500),
         // if current query is different that previous query
         distinctUntilChanged()
       )
       .subscribe(() => {
-        this.channelsService.setSpinner(ChannelSpinnerEvents.SEARCHCHANNELS);
         this.channelsService.getChannels(this.channelsService.page);
       });
   }

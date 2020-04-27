@@ -17,12 +17,12 @@ export interface ChannelsHttpResponse {
 export type FilterTypes = "available" | "user";
 
 export enum ChannelSpinnerEvents {
-  FETCHCHANNEL = "fetch channel",
-  REMOVECHANNEL = "remove channel",
+  INDIVIDUALCHANNEL = "channel processing",
   SEARCHCHANNELS = "search channels",
+  FETCHCHANNELS = "fetch channels",
 }
 
 export interface ChannelSpinnerEvent {
-  type: ChannelSpinnerEvents;
+  //   type: ChannelSpinnerEvents;
   _id?: string;
 }

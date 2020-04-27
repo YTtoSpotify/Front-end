@@ -6,7 +6,7 @@
 
   <ng-container
     *ngIf="
-      spinnersService.individualChannelSpinnerSub$ | async as spinnerChannelId
+      spinnersService.individualChannelSpinner$ | async as spinnerChannelId
     "
   >
     <ng-container *ngIf="spinnerChannelId === channel._id; else channelAction">

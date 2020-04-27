@@ -15,7 +15,7 @@
     />
     <ng-container
       *ngIf="
-        (channelsService.spinnerEventObs$ | async).type !== 'search channels';
+        !(spinnersService.searchSpinner$ | async) as searchSpinner;
         else loader
       "
     >
@@ -29,29 +29,42 @@
 </div>
 
 <div class="channels-container">
-  <ng-container *ngIf="channelsService.channelsObs$ | async as channels">
-    <app-channel
-      *ngFor="let channel of channels"
-      [channel]="channel"
-    ></app-channel>
-    <div class="nav-buttons">
-      <button
-        class="btn"
-        (click)="channelsService.switchPage('prev')"
-        [disabled]="!channelsService.isPrevPage"
-      >
-        Previous
-      </button>
-      <button class="btn request-btn">
-        We don't have it? <span class="highlight-text">Request it</span>
-      </button>
-      <button
-        class="btn"
-        (click)="channelsService.switchPage('next')"
-        [disabled]="!channelsService.isNextPage"
-      >
-        Next
-      </button>
-    </div>
+  <ng-container
+    *ngIf="{
+      channels$: channelsService.channelsObs$ | async,
+      fetchingSpinner$: spinnersService.fetchChannelsSpinner$ | async
+    } as observables"
+  >
+    <ng-container
+      *ngIf="!observables.fetchingSpinner$ as isFetching; else channelLoader"
+    >
+      <app-channel
+        *ngFor="let channel of observables.channels$"
+        [channel]="channel"
+      ></app-channel>
+      <div class="nav-buttons">
+        <button
+          class="btn"
+          (click)="channelsService.switchPage('prev')"
+          [disabled]="!channelsService.isPrevPage"
+        >
+          Previous
+        </button>
+        <button class="btn request-btn">
+          We don't have it? <span class="highlight-text">Request it</span>
+        </button>
+        <button
+          class="btn"
+          (click)="channelsService.switchPage('next')"
+          [disabled]="!channelsService.isNextPage"
+        >
+          Next
+        </button>
+      </div>
+    </ng-container>
   </ng-container>
+
+  <ng-template #channelLoader>
+    <ring-loader color="#4D6A6D"></ring-loader>
+  </ng-template>
 </div>

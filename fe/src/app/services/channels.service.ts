@@ -1,3 +1,5 @@
+import { finalize, tap } from "rxjs/operators";
+import { SpinnersService } from "./../spinners.service";
 import {
   ChannelsHttpResponse,
   FilterTypes,
@@ -16,26 +18,20 @@ import { environment } from "../../environments/environment";
 })
 export class ChannelsService {
   private channels = new BehaviorSubject<Channel[]>([]);
-  private spinnerEvent = new BehaviorSubject<ChannelSpinnerEvent>({
-    type: null,
-  });
   private serverUrl = `${environment.serverUrl}/channels`;
 
   public totalChannelPages: number;
   public page: number;
   public totalChannelsCount: number;
   public nameFilter = "";
-  public channelsObs$: Observable<Channel[]> = this.channels.asObservable();
-  public spinnerEventObs$: Observable<
-    ChannelSpinnerEvent
-  > = this.spinnerEvent.asObservable();
+  readonly channelsObs$: Observable<Channel[]> = this.channels.asObservable();
 
-  public;
   public channelFilter: FilterTypes = "available";
 
   constructor(
     private http: HttpClient,
-    private notyfService: NotyfFlashService
+    private notyfService: NotyfFlashService,
+    private spinnersService: SpinnersService
   ) {}
 
   get isNextPage(): boolean {
@@ -51,6 +47,10 @@ export class ChannelsService {
   }
 
   getChannels(page = 1) {
+    if (this.nameFilter) {
+      this.spinnersService.setSearchSpinner(true);
+    }
+    this.spinnersService.setFetchingSpinner(true);
     const url =
       this.channelFilter === "user"
         ? `${this.serverUrl}/userChannels`
@@ -63,10 +63,16 @@ export class ChannelsService {
           nameFilter: this.nameFilter,
         },
       })
+      .pipe(
+        tap(() => {}),
+        finalize(() => {
+          this.spinnersService.setSearchSpinner(false);
+          this.spinnersService.setFetchingSpinner(false);
+        })
+      )
       .subscribe(
         (data) => {
           this.setChannelPaginationData(data);
-          this.spinnerEvent.next({ type: null });
         },
         (err) => this.notyfService.errorNotyf(err)
       );
@@ -95,10 +101,6 @@ export class ChannelsService {
 
   public toggleUserChannelFilter(filter: FilterTypes) {
     this.channelFilter = filter;
-  }
-
-  public setSpinner(type: ChannelSpinnerEvents, channelId?: string) {
-    this.spinnerEvent.next({ type, _id: channelId });
   }
 
   private setChannelPaginationData(paginationData: ChannelsHttpResponse) {
