@@ -19,6 +19,9 @@
   </button>
 
   <div class="search-input">
+    <div class="search-icon">
+      <img src="../../assets/icons/search.svg" alt="magnifying glass" />
+    </div>
     <input
       type="text"
       #channelSearchInput
@@ -31,11 +34,16 @@
         else loader
       "
     >
-      <img src="../../assets/icons/search.svg" alt="magnifying glass" />
+      <img
+        src="../../assets/icons/x-square.svg"
+        alt="x character in a square"
+        class="ico-btn"
+        (click)="handleClearName()"
+      />
     </ng-container>
 
     <ng-template #loader>
-      <ring-loader color="#4D6A6D" size="24" class="spinner"></ring-loader>
+      <ring-loader color="#4D6A6D" size="24"></ring-loader>
     </ng-template>
   </div>
 </div>

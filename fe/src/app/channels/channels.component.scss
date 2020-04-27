@@ -53,21 +53,20 @@ button {
   }
 
   .search-input {
+    display: flex;
+    align-items: center;
+    background: white;
     position: relative;
-
-    img,
-    .spinner {
-      position: absolute;
-      right: 2px;
-      top: 9px;
+    padding: $pd-sm;
+    border: 1px solid $accent-orange;
+    .search-icon {
+      margin-right: $ma-sm;
     }
 
     input {
       border: none;
-      border-bottom: 1px solid $accent-orange;
       background: none;
       height: 100%;
-      padding: 0 2px;
     }
   }
 }

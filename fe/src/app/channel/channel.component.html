@@ -1,7 +1,9 @@
 <div class="channel">
   <img [src]="channel.img" alt="channel logo" />
   <div>
-    <h6>{{ channel.name }}</h6>
+    <a [href]="channel.url">
+      <h6>{{ channel.name }}</h6>
+    </a>
   </div>
 
   <ng-container
@@ -20,12 +22,14 @@
       alt="plus icon "
       (click)="handleAddChannel()"
       *ngIf="!channel.isUserSub"
+      class="ico-btn"
     />
     <img
       src="../../assets/icons/x-square.svg"
       alt="x icon with box around it"
       (click)="handleRemoveChannel()"
       *ngIf="channel.isUserSub"
+      class="ico-btn"
     />
   </ng-template>
 </div>

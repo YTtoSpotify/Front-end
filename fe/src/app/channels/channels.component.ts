@@ -30,8 +30,6 @@ export class ChannelsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.channelsService.getChannels();
 
-    this.nameFilter = this.channelsService.nameFilter;
-
     this.inputEventSub = fromEvent(
       this.channelSearchInput.nativeElement,
       "keyup"
@@ -57,6 +55,10 @@ export class ChannelsComponent implements OnInit, OnDestroy {
     this.channelsService.getChannels();
   }
 
+  handleClearName() {
+    this.channelsService.clearNameFilter();
+    this.channelsService.getChannels();
+  }
   ngOnDestroy() {
     this.inputEventSub.unsubscribe();
   }

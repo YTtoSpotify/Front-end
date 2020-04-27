@@ -101,6 +101,9 @@ export class ChannelsService {
     this.channelFilter = filter;
   }
 
+  public clearNameFilter() {
+    this.nameFilter = "";
+  }
   private setChannelPaginationData(paginationData: ChannelsHttpResponse) {
     this.channels.next(paginationData.channels);
     this.totalChannelPages = paginationData.numOfChannels;

@@ -27,8 +27,12 @@ button {
 .btn {
   padding: $pd-sm;
   border-radius: 5px;
+  cursor: pointer;
 }
 
+.ico-btn {
+  cursor: pointer;
+}
 h1 {
   font-size: $h1-fs;
 }
@@ -48,6 +52,10 @@ h6 {
   font-size: $h6-fs;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
 // SVG Loader animation
 
 .circle-svg {
