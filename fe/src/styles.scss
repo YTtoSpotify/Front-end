@@ -16,6 +16,14 @@ body {
   background: $primary-white;
 }
 
+button {
+  cursor: pointer;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
 .btn {
   padding: $pd-sm;
   border-radius: 5px;
