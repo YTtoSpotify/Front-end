@@ -22,7 +22,7 @@
     "@angular/router": "~8.2.14",
     "@bit/joshk.ng-spinners.ring-loader": "^1.1.1",
     "@briebug/jest-schematic": "^2.1.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "ng-notyf": "^0.4.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
