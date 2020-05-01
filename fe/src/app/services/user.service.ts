@@ -72,4 +72,16 @@ export class UserService {
         (err) => this.notyfService.errorNotyf(err)
       );
   }
+
+  createUserSpotifyPlaylist(playlistName: string) {
+    return this.http
+      .post<{ message: string }>(`${this.serverUrl}/createSpotifyPlaylist`, {
+        playlistName,
+      })
+      .pipe(
+        finalize(() => {
+          this.getUser();
+        })
+      );
+  }
 }

@@ -1,3 +1,4 @@
+import { NgbModalModule } from "@ng-bootstrap/ng-bootstrap";
 import { HttpRequestInterceptor } from "./HttpRequestInterceptor.";
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
@@ -14,6 +15,7 @@ import { FormsModule } from "@angular/forms";
 import { NotyfModule } from "ng-notyf";
 import { RingLoaderModule } from "@bit/joshk.ng-spinners.ring-loader";
 
+import { SpotifyPlaylistFormComponent } from "./spotify-playlist-form/spotify-playlist-form.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +24,7 @@ import { RingLoaderModule } from "@bit/joshk.ng-spinners.ring-loader";
     LandingPageComponent,
     ChannelsComponent,
     ChannelComponent,
+    SpotifyPlaylistFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,9 @@ import { RingLoaderModule } from "@bit/joshk.ng-spinners.ring-loader";
     FormsModule,
     NotyfModule,
     RingLoaderModule,
+    NgbModalModule,
   ],
+  entryComponents: [SpotifyPlaylistFormComponent],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
