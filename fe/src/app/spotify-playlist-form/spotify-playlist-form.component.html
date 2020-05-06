@@ -1,0 +1,35 @@
+<div class="modal-header">
+  <h4 class="modal-title">Create Spotify Playlist</h4>
+
+  <button type="button" class="btn btn-outline-dark" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <p>
+    We'll need a playlist to send your
+    <span class="highlight-text">fresh</span> new music to!
+  </p>
+  <form>
+    <div class="form-group">
+      <label for="playlistName">Enter Playlist Name</label>
+      <input
+        [(ngModel)]="spotifyPlaylistName"
+        class="form-control"
+        type="text"
+        id="playlistName"
+        name="playlistName"
+        required
+      />
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn-outline-dark"
+    (click)="handleCreatePlaylist()"
+  >
+    Save
+  </button>
+</div>

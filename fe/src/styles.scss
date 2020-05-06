@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import "./reset.scss";
 @import "./app/app-variables.scss";
+@import "~bootstrap/scss/bootstrap";
 
 * {
   -webkit-font-smoothing: antialiased;
@@ -22,12 +23,6 @@ button {
   &:disabled {
     cursor: not-allowed;
   }
-}
-
-.btn {
-  padding: $pd-sm;
-  border-radius: 5px;
-  cursor: pointer;
 }
 
 .ico-btn {
