@@ -4,7 +4,7 @@ import { ChannelsService } from "./../services/channels.service";
 import { UserService } from "./../services/user.service";
 import { Channel } from "../interfaces/channels.interface";
 import { Component, OnInit, Input } from "@angular/core";
-import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: "app-channel",
@@ -31,6 +31,8 @@ export class ChannelComponent implements OnInit {
           return true;
         },
       });
+    } else {
+      this.userService.addChannelToUser(this.channel._id);
     }
   }
 
