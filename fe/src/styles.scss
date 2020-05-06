@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~bootstrap/scss/bootstrap";
 @import "./reset.scss";
 @import "./app/app-variables.scss";
+@import "~bootstrap/scss/bootstrap";
 
 * {
   -webkit-font-smoothing: antialiased;
