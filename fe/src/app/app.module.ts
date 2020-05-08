@@ -14,7 +14,6 @@ import { ChannelComponent } from "./channel/channel.component";
 import { FormsModule } from "@angular/forms";
 import { NotyfModule } from "ng-notyf";
 
-import { SpotifyPlaylistFormComponent } from "./spotify-playlist-form/spotify-playlist-form.component";
 import { RingSpinnerComponent } from "./reusable/ring-spinner/ring-spinner.component";
 @NgModule({
   declarations: [
@@ -24,7 +23,6 @@ import { RingSpinnerComponent } from "./reusable/ring-spinner/ring-spinner.compo
     LandingPageComponent,
     ChannelsComponent,
     ChannelComponent,
-    SpotifyPlaylistFormComponent,
     RingSpinnerComponent,
   ],
   imports: [
@@ -35,7 +33,6 @@ import { RingSpinnerComponent } from "./reusable/ring-spinner/ring-spinner.compo
     NgbModule,
     NotyfModule,
   ],
-  entryComponents: [SpotifyPlaylistFormComponent],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

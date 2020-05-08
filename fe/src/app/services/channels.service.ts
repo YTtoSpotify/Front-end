@@ -45,8 +45,10 @@ export class ChannelsService {
   }
 
   getChannels(page = 1) {
+    let pageNumber = page.toString();
     if (this.nameFilter) {
       this.spinnersService.setSearchSpinner(true);
+      pageNumber = "1";
     }
     this.spinnersService.setFetchingSpinner(true);
     const url =
@@ -57,7 +59,7 @@ export class ChannelsService {
     this.http
       .get<ChannelsHttpResponse>(url, {
         params: {
-          page: page.toString(),
+          page: pageNumber,
           nameFilter: this.nameFilter,
         },
       })

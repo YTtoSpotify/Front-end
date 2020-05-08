@@ -1,10 +1,9 @@
-import { SpotifyPlaylistFormComponent } from "./../spotify-playlist-form/spotify-playlist-form.component";
+import { NotyfFlashService } from "./../services/notyf.service";
 import { SpinnersService } from "./../spinners.service";
 import { ChannelsService } from "./../services/channels.service";
 import { UserService } from "./../services/user.service";
 import { Channel } from "../interfaces/channels.interface";
 import { Component, OnInit, Input } from "@angular/core";
-import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: "app-channel",
@@ -16,21 +15,23 @@ export class ChannelComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private modalService: NgbModal,
     public channelsService: ChannelsService,
-    public spinnersService: SpinnersService
+    public spinnersService: SpinnersService,
+    private notyyFlashService: NotyfFlashService
   ) {}
 
   ngOnInit() {}
 
   handleAddChannel() {
     if (!this.userService.user.hasPlaylist) {
-      this.modalService.open(SpotifyPlaylistFormComponent, {
-        beforeDismiss: () => {
+      this.userService.createUserSpotifyPlaylist().subscribe(
+        (data) => {
           this.userService.addChannelToUser(this.channel._id);
-          return true;
         },
-      });
+        (err) => {
+          this.notyyFlashService.errorNotyf(err);
+        }
+      );
     } else {
       this.userService.addChannelToUser(this.channel._id);
     }

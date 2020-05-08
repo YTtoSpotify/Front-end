@@ -73,11 +73,9 @@ export class UserService {
       );
   }
 
-  createUserSpotifyPlaylist(playlistName: string) {
+  createUserSpotifyPlaylist() {
     return this.http
-      .post<{ message: string }>(`${this.serverUrl}/createSpotifyPlaylist`, {
-        playlistName,
-      })
+      .post<{ message: string }>(`${this.serverUrl}/createSpotifyPlaylist`, {})
       .pipe(
         finalize(() => {
           this.getUser();
