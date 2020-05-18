@@ -35,7 +35,11 @@
     </div>
   </div>
   <div class="modal-footer">
-    <button class="btn btn-success" [disabled]="channelUrlInput.invalid">
+    <button
+      class="btn btn-success"
+      [disabled]="channelUrlInput.invalid"
+      (click)="handleAddChannel()"
+    >
       Submit
     </button>
   </div>
