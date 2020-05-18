@@ -10,6 +10,8 @@ import {
 } from "@angular/core";
 import { fromEvent, Subscription } from "rxjs";
 import { map, debounceTime, distinctUntilChanged } from "rxjs/operators";
+import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
+import { AddChannelComponent } from "../add-channel/add-channel.component";
 
 @Component({
   selector: "app-channels",
@@ -17,14 +19,17 @@ import { map, debounceTime, distinctUntilChanged } from "rxjs/operators";
   styleUrls: ["./channels.component.scss"],
 })
 export class ChannelsComponent implements OnInit, OnDestroy {
-  private inputEventSub: Subscription;
   public nameFilter: string;
 
+  private inputEventSub: Subscription;
+  private modalRef: NgbModalRef;
   @ViewChild("channelSearchInput", { static: true })
-  channelSearchInput: ElementRef;
+  private channelSearchInput: ElementRef;
+
   constructor(
     public channelsService: ChannelsService,
-    public spinnersService: SpinnersService
+    public spinnersService: SpinnersService,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit() {
@@ -58,6 +63,12 @@ export class ChannelsComponent implements OnInit, OnDestroy {
   handleClearName() {
     this.channelsService.clearNameFilter();
     this.channelsService.getChannels();
+  }
+
+  openAddChannelModal() {
+    //   open modal
+    this.modalRef = this.modalService.open(AddChannelComponent);
+    // send create request with url
   }
   ngOnDestroy() {
     this.inputEventSub.unsubscribe();

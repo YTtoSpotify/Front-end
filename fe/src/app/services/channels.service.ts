@@ -44,7 +44,7 @@ export class ChannelsService {
     return this.channels.getValue();
   }
 
-  getChannels(page = 1) {
+  public getChannels(page = 1) {
     let pageNumber = page.toString();
     if (this.nameFilter) {
       this.spinnersService.setSearchSpinner(true);
@@ -78,7 +78,23 @@ export class ChannelsService {
       );
   }
 
-  switchPage(direction: "next" | "prev") {
+  public createChannel(channelUrl: string) {
+    this.http
+      .post<ChannelsHttpResponse>(`${this.serverUrl}/createChannel`, {
+        channelUrl,
+      })
+      .subscribe(
+        (data) => {
+          this.setChannelPaginationData(data);
+          this.notyfService.successNotyf("Channel created!");
+        },
+        (err) => {
+          this.notyfService.errorNotyf(err);
+        }
+      );
+  }
+
+  public switchPage(direction: "next" | "prev") {
     if (direction === "next" && this.page < this.totalChannelPages) {
       this.getChannels(this.page + 1);
     } else if (direction === "prev" && this.page > 1) {

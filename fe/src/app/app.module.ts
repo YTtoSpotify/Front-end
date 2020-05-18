@@ -15,6 +15,7 @@ import { FormsModule } from "@angular/forms";
 import { NotyfModule } from "ng-notyf";
 
 import { RingSpinnerComponent } from "./reusable/ring-spinner/ring-spinner.component";
+import { AddChannelComponent } from "./add-channel/add-channel.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +25,7 @@ import { RingSpinnerComponent } from "./reusable/ring-spinner/ring-spinner.compo
     ChannelsComponent,
     ChannelComponent,
     RingSpinnerComponent,
+    AddChannelComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,6 +35,7 @@ import { RingSpinnerComponent } from "./reusable/ring-spinner/ring-spinner.compo
     NgbModule,
     NotyfModule,
   ],
+  entryComponents: [AddChannelComponent],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

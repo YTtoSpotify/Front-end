@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="modal-header pl-0">
+    <h5>Add a new channel</h5>
+  </div>
+  <div class="modal-body row">
+    <div>
+      <div class="card"></div>
+    </div>
+    <div>
+      <label for="new-channel-url"
+        >Youtube Channel Url
+        <span
+          placement="right"
+          ngbTooltip="Channel url found on Youtube channel page"
+        >
+          <img
+            src="../../assets/icons/info.svg"
+            alt="info icon"
+            class="ico-tooltip"
+            style="size: 10px;"
+          /> </span
+      ></label>
+      <input
+        type="text"
+        class="form-control"
+        name="new-channel-url"
+        id="new-channel-url"
+        [(ngModel)]="channelUrl"
+        required
+        #channelUrlInput="ngModel"
+      />
+      <small id="url-example" class="form-text text-muted"
+        >Ex: https://www.youtube.com/channel/aeCAH6Iofe0g5KZc2I1mScPA</small
+      >
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-success" [disabled]="channelUrlInput.invalid">
+      Submit
+    </button>
+  </div>
+</div>
