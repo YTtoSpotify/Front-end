@@ -1,7 +1,7 @@
 import { NotyfFlashService } from "./../services/notyf.service";
 import { ChannelsService } from "./../services/channels.service";
 import { Component, OnInit } from "@angular/core";
-import { isValidYTUrl } from "../reusable/youtubeUrlValidator";
+import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: "app-add-channel",
@@ -10,24 +10,27 @@ import { isValidYTUrl } from "../reusable/youtubeUrlValidator";
 })
 export class AddChannelComponent implements OnInit {
   public channelUrl: string;
+  public isAdding = false;
   constructor(
     private channelsService: ChannelsService,
-    private notyfService: NotyfFlashService
+    private notyfService: NotyfFlashService,
+    private activeModal: NgbActiveModal
   ) {}
 
   ngOnInit() {}
 
   handleAddChannel() {
-    if (isValidYTUrl(this.channelUrl)) {
-      this.channelsService.createChannel(this.channelUrl).subscribe(
-        (data) => {
-          this.channelsService.setChannelPaginationData(data);
-          this.notyfService.successNotyf("Channel added successfully!");
-        },
-        (err) => {
-          this.notyfService.errorNotyf(err);
-        }
-      );
-    }
+    this.isAdding = true;
+    this.channelsService.createChannel(this.channelUrl).subscribe(
+      (data) => {
+        this.channelsService.setChannelPaginationData(data);
+        this.notyfService.successNotyf("Channel added successfully!");
+        this.activeModal.close();
+      },
+      (err) => {
+        this.activeModal.close();
+        this.notyfService.errorNotyf(err);
+      }
+    );
   }
 }

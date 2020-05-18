@@ -36,11 +36,16 @@
   </div>
   <div class="modal-footer">
     <button
-      class="btn btn-success"
+      class="btn btn-outline-success"
       [disabled]="channelUrlInput.invalid"
       (click)="handleAddChannel()"
+      *ngIf="!isAdding; else addingChannelSpinner"
     >
       Submit
     </button>
   </div>
+
+  <ng-template #addingChannelSpinner>
+    <app-ring-spinner></app-ring-spinner>
+  </ng-template>
 </div>

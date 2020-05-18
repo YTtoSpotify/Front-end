@@ -79,19 +79,12 @@ export class ChannelsService {
   }
 
   public createChannel(channelUrl: string) {
-    this.http
-      .post<ChannelsHttpResponse>(`${this.serverUrl}/createChannel`, {
+    return this.http.post<ChannelsHttpResponse>(
+      `${this.serverUrl}/createChannel`,
+      {
         channelUrl,
-      })
-      .subscribe(
-        (data) => {
-          this.setChannelPaginationData(data);
-          this.notyfService.successNotyf("Channel created!");
-        },
-        (err) => {
-          this.notyfService.errorNotyf(err);
-        }
-      );
+      }
+    );
   }
 
   public switchPage(direction: "next" | "prev") {
@@ -122,7 +115,7 @@ export class ChannelsService {
   public clearNameFilter() {
     this.nameFilter = "";
   }
-  private setChannelPaginationData(paginationData: ChannelsHttpResponse) {
+  public setChannelPaginationData(paginationData: ChannelsHttpResponse) {
     this.channels.next(paginationData.channels);
     this.totalChannelPages = paginationData.numOfChannels;
     this.totalChannelPages = paginationData.totalPagesCount;
