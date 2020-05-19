@@ -44,7 +44,7 @@ export class ChannelsService {
     return this.channels.getValue();
   }
 
-  getChannels(page = 1) {
+  public getChannels(page = 1) {
     let pageNumber = page.toString();
     if (this.nameFilter) {
       this.spinnersService.setSearchSpinner(true);
@@ -78,7 +78,16 @@ export class ChannelsService {
       );
   }
 
-  switchPage(direction: "next" | "prev") {
+  public createChannel(channelUrl: string) {
+    return this.http.post<ChannelsHttpResponse>(
+      `${this.serverUrl}/createChannel`,
+      {
+        channelUrl,
+      }
+    );
+  }
+
+  public switchPage(direction: "next" | "prev") {
     if (direction === "next" && this.page < this.totalChannelPages) {
       this.getChannels(this.page + 1);
     } else if (direction === "prev" && this.page > 1) {
@@ -106,7 +115,7 @@ export class ChannelsService {
   public clearNameFilter() {
     this.nameFilter = "";
   }
-  private setChannelPaginationData(paginationData: ChannelsHttpResponse) {
+  public setChannelPaginationData(paginationData: ChannelsHttpResponse) {
     this.channels.next(paginationData.channels);
     this.totalChannelPages = paginationData.numOfChannels;
     this.totalChannelPages = paginationData.totalPagesCount;
