@@ -19,6 +19,9 @@ export class AuthService {
     window.open(this.serverUrl, name, specs);
   }
 
+  logout() {
+    return this.http.get(`${this.serverUrl}/logout`);
+  }
   checkAuth() {
     this.http
       .get(`${this.serverUrl}/checkAuth`)
