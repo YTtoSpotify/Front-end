@@ -21,8 +21,6 @@ export class HomeComponent implements OnInit {
 
   handleLogout() {
     this.authService.logout().subscribe((data) => {
-      this.authService.isAuthenticated = false;
-      localStorage.removeItem("authenticated");
       this.router.navigate(["/"]);
     });
   }

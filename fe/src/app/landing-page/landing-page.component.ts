@@ -1,3 +1,4 @@
+import { Router } from "@angular/router";
 import { AuthService } from "./../services/auth.service";
 import { Component, OnInit } from "@angular/core";
 
@@ -7,7 +8,11 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./landing-page.component.scss"],
 })
 export class LandingPageComponent implements OnInit {
-  constructor(public authService: AuthService) {}
+  constructor(public authService: AuthService, private router: Router) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.authService.checkAuth().subscribe((data: any) => {
+      this.router.navigate(["/dashboard"]);
+    });
+  }
 }
