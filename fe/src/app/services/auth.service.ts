@@ -5,8 +5,6 @@ import { environment } from "../../environments/environment";
   providedIn: "root",
 })
 export class AuthService {
-  public isAuthenticated = false;
-
   private serverUrl = `${environment.serverUrl}/auth`;
   constructor(private http: HttpClient) {}
 
@@ -22,12 +20,12 @@ export class AuthService {
   logout() {
     return this.http.get(`${this.serverUrl}/logout`);
   }
+
   checkAuth() {
-    this.http
-      .get(`${this.serverUrl}/checkAuth`)
-      .subscribe((data: { isAuthenticated: boolean }) => {
-        this.isAuthenticated = data.isAuthenticated;
-        localStorage.setItem("authenticated", `${data.isAuthenticated}`);
-      });
+    return this.http.get(`${this.serverUrl}/checkAuth`);
+    // .subscribe((data: { isAuthenticated: boolean }) => {
+    //   this.isAuthenticated = data.isAuthenticated;
+    //   localStorage.setItem("authenticated", `${data.isAuthenticated}`);
+    // });
   }
 }
