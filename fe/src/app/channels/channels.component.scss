@@ -18,10 +18,11 @@ app-ring-spinner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: white;
   padding: $pd-xs;
   border: 1px solid $accent-orange;
   font-size: 0.8rem;
+  min-width: 200px;
+  max-width: 200px;
   input {
     border: none;
     background: none;
