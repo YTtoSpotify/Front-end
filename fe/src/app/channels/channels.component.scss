@@ -35,38 +35,21 @@
   }
 }
 
-button {
-  border: 1px solid $accent-orange;
-  background: white;
+.active-nav-btn {
+  background: $accent-orange;
+  color: white;
+  border: none;
 }
-
-.channel-nav {
+.search-input {
   display: flex;
-
-  button {
-    margin-right: $ma-sm;
-  }
-
-  .active-nav-btn {
-    background: $accent-orange;
-    color: white;
-  }
-
-  .search-input {
-    display: flex;
-    align-items: center;
-    background: white;
-    position: relative;
-    padding: $pd-sm;
-    border: 1px solid $accent-orange;
-    .search-icon {
-      margin-right: $ma-sm;
-    }
-
-    input {
-      border: none;
-      background: none;
-      height: 100%;
-    }
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  padding: $pd-xs;
+  border: 1px solid $accent-orange;
+  font-size: 0.8rem;
+  input {
+    border: none;
+    background: none;
   }
 }

@@ -1,9 +1,13 @@
-<div class="channel-nav">
+<div class="mb-1 col-12 p-0">
   <button
     [ngClass]="{
       btn: true,
+      'btn-primary': true,
+      'mr-1': true,
+      'mb-1': true,
       'active-nav-btn': channelsService.channelFilter === 'available'
     }"
+    class=""
     (click)="handleUserChannelFilter('available')"
   >
     Available channels
@@ -11,41 +15,43 @@
   <button
     [ngClass]="{
       btn: true,
+      'btn-primary': true,
+      'mb-1': true,
       'active-nav-btn': channelsService.channelFilter === 'user'
     }"
     (click)="handleUserChannelFilter('user')"
   >
     Your channels
   </button>
+</div>
 
-  <div class="search-input">
-    <div class="search-icon">
-      <img src="../../assets/icons/search.svg" alt="magnifying glass" />
-    </div>
-    <input
-      type="text"
-      #channelSearchInput
-      placeholder="Search channels"
-      [(ngModel)]="channelsService.nameFilter"
-    />
-    <ng-container
-      *ngIf="
-        !(spinnersService.searchSpinner$ | async) as searchSpinner;
-        else loader
-      "
-    >
-      <img
-        src="../../assets/icons/x-square.svg"
-        alt="x character in a square"
-        class="ico-btn"
-        (click)="handleClearName()"
-      />
-    </ng-container>
-
-    <ng-template #loader>
-      <app-ring-spinner></app-ring-spinner>
-    </ng-template>
+<div class="search-input">
+  <div class="search-icon">
+    <img src="../../assets/icons/search.svg" alt="magnifying glass" />
   </div>
+  <input
+    type="text"
+    #channelSearchInput
+    placeholder="Search channels"
+    [(ngModel)]="channelsService.nameFilter"
+  />
+  <ng-container
+    *ngIf="
+      !(spinnersService.searchSpinner$ | async) as searchSpinner;
+      else loader
+    "
+  >
+    <img
+      src="../../assets/icons/x-square.svg"
+      alt="x character in a square"
+      class="ico-btn"
+      (click)="handleClearName()"
+    />
+  </ng-container>
+
+  <ng-template #loader>
+    <app-ring-spinner></app-ring-spinner>
+  </ng-template>
 </div>
 
 <div class="channels-container">
