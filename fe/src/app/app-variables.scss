@@ -14,19 +14,19 @@ $h5-fs: 1.5rem;
 $h6-fs: 1.25rem;
 
 // PADDING
-$pd-xs: 0.32rem;
-$pd-sm: 0.64rem;
-$pd-md: 1.5rem;
-$pd-lg: 3rem;
+$pd-xs: 0.5em;
+$pd-sm: 1em;
+$pd-md: 2.4em;
+$pd-lg: 4.8em;
 
 // MARGINS
-$ma-xs: 0.32rem;
-$ma-sm: 0.64rem;
-$ma-md: 1.5rem;
-$ma-lg: 3rem;
+$ma-xs: 0.5em;
+$ma-sm: 1em;
+$ma-md: 2.4em;
+$ma-lg: 4.8em;
 
 // BORDER-RADIUS
-$radius-md: 5px;
+$radius-md: 0.5em;
 // KEY-FRAMES
 @mixin animation($animate...) {
   $max: length($animate);

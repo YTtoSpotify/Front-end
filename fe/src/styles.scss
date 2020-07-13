@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/scss/bootstrap";
 @import "./reset.scss";
 @import "./app/app-variables.scss";
-@import "~bootstrap/scss/bootstrap";
 
 * {
   -webkit-font-smoothing: antialiased;
@@ -10,6 +10,7 @@
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   box-sizing: border-box;
+  font-size: 10px;
 }
 body {
   min-height: 100vh;

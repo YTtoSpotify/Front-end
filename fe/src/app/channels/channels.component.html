@@ -1,54 +1,62 @@
-<div class="channel-nav">
-  <button
-    [ngClass]="{
-      btn: true,
-      'active-nav-btn': channelsService.channelFilter === 'available'
-    }"
-    (click)="handleUserChannelFilter('available')"
-  >
-    Available channels
-  </button>
-  <button
-    [ngClass]="{
-      btn: true,
-      'active-nav-btn': channelsService.channelFilter === 'user'
-    }"
-    (click)="handleUserChannelFilter('user')"
-  >
-    Your channels
-  </button>
-
-  <div class="search-input">
-    <div class="search-icon">
-      <img src="../../assets/icons/search.svg" alt="magnifying glass" />
-    </div>
-    <input
-      type="text"
-      #channelSearchInput
-      placeholder="Search channels"
-      [(ngModel)]="channelsService.nameFilter"
-    />
-    <ng-container
-      *ngIf="
-        !(spinnersService.searchSpinner$ | async) as searchSpinner;
-        else loader
-      "
+<div class="row p-0 pb-2">
+  <div class="mb-1 col-xs-12 col-md-6 p-0 d-sm-flex">
+    <button
+      [ngClass]="{
+        btn: true,
+        'btn-primary': true,
+        'mr-1': true,
+        'mb-1': true,
+        'active-nav-btn': channelsService.channelFilter === 'available'
+      }"
+      class=""
+      (click)="handleUserChannelFilter('available')"
     >
-      <img
-        src="../../assets/icons/x-square.svg"
-        alt="x character in a square"
-        class="ico-btn"
-        (click)="handleClearName()"
+      Available channels
+    </button>
+    <button
+      [ngClass]="{
+        btn: true,
+        'btn-primary': true,
+        'mb-1': true,
+        'mr-1': true,
+        'active-nav-btn': channelsService.channelFilter === 'user'
+      }"
+      (click)="handleUserChannelFilter('user')"
+    >
+      Your channels
+    </button>
+    <div class="search-input mb-1">
+      <div class="search-icon">
+        <img src="../../assets/icons/search.svg" alt="magnifying glass" />
+      </div>
+      <input
+        type="text"
+        #channelSearchInput
+        placeholder="Search channels"
+        [(ngModel)]="channelsService.nameFilter"
       />
-    </ng-container>
+      <ng-container
+        *ngIf="
+          !(spinnersService.searchSpinner$ | async) as searchSpinner;
+          else loader
+        "
+      >
+        <img
+          src="../../assets/icons/x-square.svg"
+          alt="x character in a square"
+          class="ico-btn"
+          (click)="handleClearName()"
+        />
+      </ng-container>
 
-    <ng-template #loader>
-      <app-ring-spinner></app-ring-spinner>
-    </ng-template>
+      <ng-template #loader>
+        <app-ring-spinner></app-ring-spinner>
+      </ng-template>
+    </div>
   </div>
 </div>
 
-<div class="channels-container">
+<div class="row p-0">
   <ng-container
     *ngIf="{
       channels$: channelsService.channelsObs$ | async,
@@ -61,30 +69,35 @@
       <app-channel
         *ngFor="let channel of observables.channels$"
         [channel]="channel"
+        class="col-sm-5 p-0 mr-1"
       ></app-channel>
-      <div class="nav-buttons">
-        <button
-          class="btn"
-          (click)="channelsService.switchPage('prev')"
-          [disabled]="!channelsService.isPrevPage"
-        >
-          Previous
-        </button>
-        <button class="btn request-btn" (click)="openAddChannelModal()">
-          We don't have it? <span class="highlight-text">Add it</span>
-        </button>
-        <button
-          class="btn"
-          (click)="channelsService.switchPage('next')"
-          [disabled]="!channelsService.isNextPage"
-        >
-          Next
-        </button>
-      </div>
     </ng-container>
   </ng-container>
 
   <ng-template #channelLoader>
     <app-ring-spinner></app-ring-spinner>
   </ng-template>
+</div>
+<div class="row p-0">
+  <div class="nav-buttons">
+    <button
+      class="btn btn-primary mt-1 mr-1"
+      (click)="channelsService.switchPage('prev')"
+      [disabled]="!channelsService.isPrevPage"
+    >
+      Previous
+    </button>
+
+    <button
+      class="btn btn-primary mt-1 mr-1"
+      (click)="channelsService.switchPage('next')"
+      [disabled]="!channelsService.isNextPage"
+    >
+      Next
+    </button>
+    <button class="btn btn-outline-dark mt-1" (click)="openAddChannelModal()">
+      We don't have it?
+      <span class="highlight-text">Add it</span>
+    </button>
+  </div>
 </div>

@@ -1,11 +1,13 @@
-<div class="home-container">
-  <div class="user-welcome">
-    <ng-container *ngIf="(userService.userObs$ | async).firstName as user">
-      <h1>Hello {{ user }}!</h1>
-      <button class="btn btn-primary" (click)="handleLogout()">Log out</button>
-    </ng-container>
+<div class="container p-0">
+  <div class="row">
+    <div class="col-md-2 pb-3 p-0">
+      <ng-container *ngIf="(userService.userObs$ | async).firstName as user">
+        <h1>Hello {{ user }}!</h1>
+        <button class="btn btn-primary" (click)="handleLogout()">
+          Log out
+        </button>
+      </ng-container>
+    </div>
   </div>
-  <div>
-    <app-channels></app-channels>
-  </div>
+  <app-channels></app-channels>
 </div>
