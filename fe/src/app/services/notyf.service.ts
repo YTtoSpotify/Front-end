@@ -7,11 +7,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class NotyfFlashService {
   constructor() {}
 
-  successNotyf(message: string) {
-    console.log(message);
-  }
+  successNotyf(message: string) {}
 
-  errorNotyf(error: HttpErrorResponse) {
-    console.error(error);
-  }
+  errorNotyf(error: HttpErrorResponse) {}
 }
