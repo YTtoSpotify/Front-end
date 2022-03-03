@@ -1,30 +1,30 @@
-import { SpinnersService } from "./../spinners.service";
-import { FilterTypes } from "./../interfaces/channels.interface";
-import { ChannelsService } from "../services/channels.service";
+import { SpinnersService } from './../spinners.service';
+import { FilterTypes } from './../interfaces/channels.interface';
+import { ChannelsService } from '../services/channels.service';
 import {
   Component,
   OnInit,
   ViewChild,
   ElementRef,
   OnDestroy,
-} from "@angular/core";
-import { fromEvent, Subscription } from "rxjs";
-import { map, debounceTime, distinctUntilChanged } from "rxjs/operators";
-import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
-import { AddChannelComponent } from "../add-channel/add-channel.component";
+} from '@angular/core';
+import { fromEvent, Subscription } from 'rxjs';
+import { map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { AddChannelComponent } from '../add-channel/add-channel.component';
 
 @Component({
-  selector: "app-channels",
-  templateUrl: "./channels.component.html",
-  styleUrls: ["./channels.component.scss"],
+  selector: 'app-channels',
+  templateUrl: './channels.component.html',
+  styleUrls: ['./channels.component.scss'],
 })
 export class ChannelsComponent implements OnInit, OnDestroy {
-  public nameFilter: string;
+  public nameFilter = '';
 
-  private inputEventSub: Subscription;
-  private modalRef: NgbModalRef;
-  @ViewChild("channelSearchInput", { static: true })
-  private channelSearchInput: ElementRef;
+  private inputEventSub?: Subscription;
+  private modalRef?: NgbModalRef;
+  @ViewChild('channelSearchInput', { static: true })
+  private channelSearchInput?: ElementRef;
 
   constructor(
     public channelsService: ChannelsService,
@@ -36,8 +36,8 @@ export class ChannelsComponent implements OnInit, OnDestroy {
     this.channelsService.getChannels();
 
     this.inputEventSub = fromEvent(
-      this.channelSearchInput.nativeElement,
-      "keyup"
+      this.channelSearchInput?.nativeElement,
+      'keyup'
     )
       .pipe(
         //  get value of input
@@ -71,6 +71,6 @@ export class ChannelsComponent implements OnInit, OnDestroy {
     // send create request with url
   }
   ngOnDestroy() {
-    this.inputEventSub.unsubscribe();
+    this.inputEventSub?.unsubscribe();
   }
 }

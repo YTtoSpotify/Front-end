@@ -14,12 +14,21 @@ app-ring-spinner {
   border: none;
 }
 
+.btn-primary {
+  margin-right: 10px;
+}
+
+.nav-buttons {
+  padding-left: 0;
+}
+
 .search-input {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: $pd-xs;
   border: 1px solid $accent-orange;
+  border-radius: 5px;
   font-size: 0.8rem;
   min-width: 200px;
   max-width: 200px;
